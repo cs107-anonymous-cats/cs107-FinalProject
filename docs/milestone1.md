@@ -6,15 +6,13 @@ This package implements the automatic differentiation. This is important for com
 
 Automatic Differentiation is a set of techniques that executes a sequence of elementary arithmetic operations (addition, subtraction, multiplication, division, etc.) and elementary functions. AD applies the chain rule to these operations to compute derivatives of arbitrary order, which is when the order is a real rational, irrational, or complex number. AD is different from symbolic and numerical differentiation because it is more code efficient, can output a single expression, and does not have round-off errors in the discretization process/cancellation. AD is also popular because it can compute partial derivatives of functions with many inputs/independent variables, which is important for gradient-based optimization. The two forms of AD are the forward mode, where the chain rule is applied from inside to outside the given function/expression, while reverse mode goes from outside to inside.
 
-# How to Use AutomaticDifferentiation(Taro to update)
+# How to Use AutomaticDifferentiation
 
 #### Installing the package
-
 
 python3 -m pip install AutDiff
 
 #### Dependencies 
-
 
 python3 -m pip install requirements.txt
 
@@ -34,47 +32,30 @@ python3 -m pip install AutDiff
 
 #### Dependencies 
 
-
 python3 -m pip install requirements.txt
 
 #### Importing the package: 
 
 import AutDiff as ad
 
-#### Importing numpy will also be necessary: 
-
-#### Examples:
-
-For a scalar function: 
-
-
 #### Installing the package
-
 
 python3 -m pip install AutDiff
 
 #### Dependencies 
 
-
 python3 -m pip install requirements.txt
 
 #### Importing the package: 
 
 import AutDiff as ad
 
-#### Importing numpy will also be necessary: 
-
-#### Examples:
-
-For a scalar function: 
 #### Installing the package
-
 
 python3 -m pip install AutDiff
 
 #### Dependencies 
 
-
 python3 -m pip install requirements.txt
 
 #### Importing the package: 
@@ -86,9 +67,11 @@ import AutDiff as ad
 #### Examples:
 
 For a scalar function: 
+
 ![](HowtoUse1_scalar.png)
 
 For a vector function:
+
 ![](HowtoUse2_vector.png)
 
 # Software Orgnaization(Zach to update: address the milestone 1 requirement 1 by 1. describe what modules you will have,what file contains  what, give a photo with structure,package distribution. need more details)
@@ -100,11 +83,7 @@ in /docs.
 - Package will be distributed by uploading to PyPI.
 - We may or may not package our software using Django.
 
-# Implementation (Jie to update)
-# core data structure, classes, method and name attributes, give example
-# like dual numbers, forward mode, fast forward mode, what methods are in which
-# external dependencies, dealing with elementary functions
-# 
+# Implementation 
 
 1. Core data structure: 
 We will primarily use arrays. We will design our own data structure for dual numbers. 
@@ -114,9 +93,14 @@ We will implement 2 classes:
 - Differentation 
 - DualNumber
 
+Example class structure and methods inside:
+
+![](autodiff.png)
+
 3. Methods and name attributes: 
 Basic methods will include *forward*, *reverse*, *primaltrace*, *tangenttrace*, etc.
 Sample method will be executed as the following:
+
 ![](add_method.png)
 
  
