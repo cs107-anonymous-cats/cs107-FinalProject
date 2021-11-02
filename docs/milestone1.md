@@ -7,10 +7,89 @@ This package implements the automatic differentiation. This is important for com
 Automatic Differentiation is a set of techniques that executes a sequence of elementary arithmetic operations (addition, subtraction, multiplication, division, etc.) and elementary functions. AD applies the chain rule to these operations to compute derivatives of arbitrary order, which is when the order is a real rational, irrational, or complex number. AD is different from symbolic and numerical differentiation because it is more code efficient, can output a single expression, and does not have round-off errors in the discretization process/cancellation. AD is also popular because it can compute partial derivatives of functions with many inputs/independent variables, which is important for gradient-based optimization. The two forms of AD are the forward mode, where the chain rule is applied from inside to outside the given function/expression, while reverse mode goes from outside to inside.
 
 # How to Use AutomaticDifferentiation(Taro to update)
-# installing package, importing package, with demo code (in photo)
-# calling modules, example function 
 
-The user should import the class AutomaticDifferentiation which has a forward and a reverse method. The user can then use those methods to compute the gradient of a function evaluated at a given point , i.e. AutomaticDifferentiation.forward(f,x) and AutomaticDifferentiation.reverse(f,x) with f the function whose gradient should be computed and x an array representing the point at which it should be evaluated.
+#### Installing the package
+
+
+python3 -m pip install AutDiff
+
+#### Dependencies 
+
+
+python3 -m pip install requirements.txt
+
+#### Importing the package: 
+
+import AutDiff as ad
+
+#### Importing numpy will also be necessary: 
+
+#### Examples:
+
+For a scalar function: 
+#### Installing the package
+
+
+python3 -m pip install AutDiff
+
+#### Dependencies 
+
+
+python3 -m pip install requirements.txt
+
+#### Importing the package: 
+
+import AutDiff as ad
+
+#### Importing numpy will also be necessary: 
+
+#### Examples:
+
+For a scalar function: 
+
+
+#### Installing the package
+
+
+python3 -m pip install AutDiff
+
+#### Dependencies 
+
+
+python3 -m pip install requirements.txt
+
+#### Importing the package: 
+
+import AutDiff as ad
+
+#### Importing numpy will also be necessary: 
+
+#### Examples:
+
+For a scalar function: 
+#### Installing the package
+
+
+python3 -m pip install AutDiff
+
+#### Dependencies 
+
+
+python3 -m pip install requirements.txt
+
+#### Importing the package: 
+
+import AutDiff as ad
+
+#### Importing numpy will also be necessary: 
+
+#### Examples:
+
+For a scalar function: 
+![](HowtoUse1_scalar.png)
+
+For a vector function:
+![](HowtoUse2_vector.png)
 
 # Software Orgnaization(Zach to update: address the milestone 1 requirement 1 by 1. describe what modules you will have,what file contains  what, give a photo with structure,package distribution. need more details)
 
@@ -27,11 +106,25 @@ in /docs.
 # external dependencies, dealing with elementary functions
 # 
 
-1. Core data structure: we will primarily use arrays. We will design our own data structure for dual numbers. 
-2. Classes to implement: Differentation(). DualNumber().
-3. Methods and name attributes: .forward, .reverse, primaltrace,tangenttrace. 
-4. External dependencies: scipy, numpy.
-5. Deal with elementary functions: we will overload those functions.
+1. Core data structure: 
+We will primarily use arrays. We will design our own data structure for dual numbers. 
+
+2. Classes to implement: 
+We will implement 2 classes: 
+- Differentation 
+- DualNumber
+
+3. Methods and name attributes: 
+Basic methods will include *forward*, *reverse*, *primaltrace*, *tangenttrace*, etc.
+Sample method will be executed as the following:
+![](add_method.png)
+
+ 
+4. External dependencies: 
+We will likely use **scipy**, **numpy** and **simpy**. 
+
+5. Deal with elementary functions: we will overload those functions. 
+
 
 # Licensing
 
