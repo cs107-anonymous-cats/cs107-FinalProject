@@ -6,6 +6,15 @@ This package implements the automatic differentiation. This is important for com
 
 Automatic Differentiation is a set of techniques that executes a sequence of elementary arithmetic operations (addition, subtraction, multiplication, division, etc.) and elementary functions. AD applies the chain rule to these operations to compute derivatives of arbitrary order, which is when the order is a real rational, irrational, or complex number. AD is different from symbolic and numerical differentiation because it is more code efficient, can output a single expression, and does not have round-off errors in the discretization process/cancellation. AD is also popular because it can compute partial derivatives of functions with many inputs/independent variables, which is important for gradient-based optimization. The two forms of AD are the forward mode, where the chain rule is applied from inside to outside the given function/expression, while reverse mode goes from outside to inside.
 
+![Chain Rule](https://github.com/cs107-anonymous-cats/cs107-FinalProject/tree/main/docs/chain_rule.png)
+Automatic Differentiation uses computational graphs, which are functional descriptions using nodes and edges to describe the given computation. Edges represent values like scalars, vectors, matrices, or tensors, while nodes represent functions whose inputs are the incoming edges and the outputs are the outcoming edges.Another feature of computational graphs are that they are directed, which allowsus to follow the order of the computation. For forward propagation computation, we compute the function from inside to outside. More specifically, both forward and reverse modes use the chain rule to calculate the gradients, and in forward mode, the gradients are computed in the same order as the function evaluation. 
+
+The following is an example of a computational graph:
+
+![Computational Graph](https://github.com/cs107-anonymous-cats/cs107-FinalProject/tree/main/docs/comp_graph.png)
+Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
+
+
 # How to Use AutomaticDifferentiation
 
 #### Installing the package
@@ -74,14 +83,24 @@ For a vector function:
 
 ![](HowtoUse2_vector.png)
 
-# Software Orgnaization(Zach to update: address the milestone 1 requirement 1 by 1. describe what modules you will have,what file contains  what, give a photo with structure,package distribution. need more details)
+# Software Orgnaization
 
-- All source code along can be put into a /src directory, tests in /tests, and documentation 
-in /docs. 
-- We will have the module autodiff, which handles automatic differentiation.
-- TravisCI and CodeCov will be used for testing.
-- Package will be distributed by uploading to PyPI.
-- We may or may not package our software using Django.
+#### Directory Structure
+Will be laid out as follows: 
+![](directory_structure.png)
+
+#### Modules
+**dual** module will contain the class definition and methods for our dual number structure.
+**autodiff** module will contain the class definition and methods for implementing automatic differentiation (using dual numbers).
+ 
+#### Testing and Coverage
+TravisCI will be used for managing the testing suite. CodeCov will ensure proper coverage for our source code.
+
+#### Package Distribution
+Package will be distributed with PyPI. We will create *pyproject.toml* and *setup.cfg* files and then use **build** to build and upload the project.
+
+#### Package Framework
+Since we don't have too many modules to work with and we aren't building any sort of application, a packaging framework won't be used to avoid overcomplicating development.
 
 # Implementation 
 
@@ -136,5 +155,13 @@ SOFTWARE.
 # Feedback
 More specifically, 
 a) in the background section, it will be helpful to add some information about computational graphs and how they are used in AD. 
+
+Implemented feedback: We included an explanation for the application of computational graphs in automatic differentiation, as well as embedded images for the chain rule and an example computational graph.
+
 b) In "how to use" I would add some information about how this package can be downloaded/installed, and some more detailed demo examples of you creating some scalar/vector functions, and getting their values and derivatives. 
-c) In implementation details, I would consider some of the elementary functions that you would add (like __add__, sin, __mul__, etc.), and have either a short description for all of them, or some basic pseudocode for one or two of them. 
+
+Implemented feedback: We explained how to install the package, import the package, and gave an example of the use case for forward mode (a scalar and vector function).
+
+c) In implementation details, I would consider some of the elementary functions that you would add (like __add__, sin, __mul__, etc.), and have either a short description for all of them, or some basic pseudocode for one or two of them.
+
+Implemented feedback: We provided examples of specific elementary functions, how we would implement dual numbers, and then some pseudocode for it. 
