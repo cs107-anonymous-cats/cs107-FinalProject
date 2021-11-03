@@ -29,50 +29,6 @@ python3 -m pip install requirements.txt
 
 import AutDiff as ad
 
-#### Importing numpy will also be necessary: 
-
-#### Examples:
-
-For a scalar function: 
-#### Installing the package
-
-
-python3 -m pip install AutDiff
-
-#### Dependencies 
-
-python3 -m pip install requirements.txt
-
-#### Importing the package: 
-
-import AutDiff as ad
-
-#### Installing the package
-
-python3 -m pip install AutDiff
-
-#### Dependencies 
-
-python3 -m pip install requirements.txt
-
-#### Importing the package: 
-
-import AutDiff as ad
-
-#### Installing the package
-
-python3 -m pip install AutDiff
-
-#### Dependencies 
-
-python3 -m pip install requirements.txt
-
-#### Importing the package: 
-
-import AutDiff as ad
-
-#### Importing numpy will also be necessary: 
-
 #### Examples:
 
 For a scalar function: 
