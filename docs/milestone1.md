@@ -6,7 +6,6 @@ This package implements the automatic differentiation. This is important for com
 
 Automatic Differentiation is a set of techniques that executes a sequence of elementary arithmetic operations (addition, subtraction, multiplication, division, etc.) and elementary functions. AD applies the chain rule to these operations to compute derivatives of arbitrary order, which is when the order is a real rational, irrational, or complex number. AD is different from symbolic and numerical differentiation because it is more code efficient, can output a single expression, and does not have round-off errors in the discretization process/cancellation. AD is also popular because it can compute partial derivatives of functions with many inputs/independent variables, which is important for gradient-based optimization. The two forms of AD are the forward mode, where the chain rule is applied from inside to outside the given function/expression, while reverse mode goes from outside to inside.
 
-
 ![Chain Rule](https://github.com/cs107-anonymous-cats/cs107-FinalProject/tree/main/docs/chain_rule.png)
 Automatic Differentiation uses computational graphs, which are functional descriptions using nodes and edges to describe the given computation. Edges represent values like scalars, vectors, matrices, or tensors, while nodes represent functions whose inputs are the incoming edges and the outputs are the outcoming edges.Another feature of computational graphs are that they are directed, which allowsus to follow the order of the computation. For forward propagation computation, we compute the function from inside to outside. More specifically, both forward and reverse modes use the chain rule to calculate the gradients, and in forward mode, the gradients are computed in the same order as the function evaluation. 
 
@@ -17,15 +16,12 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 
 # How to Use AutomaticDifferentiation
-# How to Use AutomaticDifferentiation(Taro to update)
 
 #### Installing the package
-
 
 python3 -m pip install AutDiff
 
 #### Dependencies 
-
 
 python3 -m pip install requirements.txt
 
@@ -45,47 +41,30 @@ python3 -m pip install AutDiff
 
 #### Dependencies 
 
-
 python3 -m pip install requirements.txt
 
 #### Importing the package: 
 
 import AutDiff as ad
 
-#### Importing numpy will also be necessary: 
-
-#### Examples:
-
-For a scalar function: 
-
-
 #### Installing the package
-
 
 python3 -m pip install AutDiff
 
 #### Dependencies 
 
-
 python3 -m pip install requirements.txt
 
 #### Importing the package: 
 
 import AutDiff as ad
 
-#### Importing numpy will also be necessary: 
-
-#### Examples:
-
-For a scalar function: 
 #### Installing the package
-
 
 python3 -m pip install AutDiff
 
 #### Dependencies 
 
-
 python3 -m pip install requirements.txt
 
 #### Importing the package: 
@@ -97,9 +76,11 @@ import AutDiff as ad
 #### Examples:
 
 For a scalar function: 
+
 ![](HowtoUse1_scalar.png)
 
 For a vector function:
+
 ![](HowtoUse2_vector.png)
 
 # Software Orgnaization
@@ -121,11 +102,7 @@ Package will be distributed with PyPI. We will create *pyproject.toml* and *setu
 #### Package Framework
 Since we don't have too many modules to work with and we aren't building any sort of application, a packaging framework won't be used to avoid overcomplicating development.
 
-# Implementation (Jie to update)
-# core data structure, classes, method and name attributes, give example
-# like dual numbers, forward mode, fast forward mode, what methods are in which
-# external dependencies, dealing with elementary functions
-# 
+# Implementation 
 
 1. Core data structure: 
 We will primarily use arrays. We will design our own data structure for dual numbers. 
@@ -135,9 +112,14 @@ We will implement 2 classes:
 - Differentation 
 - DualNumber
 
+Example class structure and methods inside:
+
+![](autodiff.png)
+
 3. Methods and name attributes: 
 Basic methods will include *forward*, *reverse*, *primaltrace*, *tangenttrace*, etc.
 Sample method will be executed as the following:
+
 ![](add_method.png)
 
  
