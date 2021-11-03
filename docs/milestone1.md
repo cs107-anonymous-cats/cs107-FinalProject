@@ -102,14 +102,24 @@ For a scalar function:
 For a vector function:
 ![](HowtoUse2_vector.png)
 
-# Software Orgnaization(Zach to update: address the milestone 1 requirement 1 by 1. describe what modules you will have,what file contains  what, give a photo with structure,package distribution. need more details)
+# Software Orgnaization
 
-- All source code along can be put into a /src directory, tests in /tests, and documentation 
-in /docs. 
-- We will have the module autodiff, which handles automatic differentiation.
-- TravisCI and CodeCov will be used for testing.
-- Package will be distributed by uploading to PyPI.
-- We may or may not package our software using Django.
+#### Directory Structure
+Will be laid out as follows: 
+![](directory_structure.png)
+
+#### Modules
+**dual** module will contain the class definition and methods for our dual number structure.
+**autodiff** module will contain the class definition and methods for implementing automatic differentiation (using dual numbers).
+ 
+#### Testing and Coverage
+TravisCI will be used for managing the testing suite. CodeCov will ensure proper coverage for our source code.
+
+#### Package Distribution
+Package will be distributed with PyPI. We will create *pyproject.toml* and *setup.cfg* files and then use **build** to build and upload the project.
+
+#### Package Framework
+Since we don't have too many modules to work with and we aren't building any sort of application, a packaging framework won't be used to avoid overcomplicating development.
 
 # Implementation (Jie to update)
 # core data structure, classes, method and name attributes, give example
