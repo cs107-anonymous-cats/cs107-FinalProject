@@ -19,11 +19,9 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-
 python3 -m pip install AutDiff
 
 #### Dependencies 
-
 
 python3 -m pip install requirements.txt
 
@@ -31,14 +29,14 @@ python3 -m pip install requirements.txt
 
 import AutDiff as ad
 
-#### Importing numpy will also be necessary: 
-
 #### Examples:
 
 For a scalar function: 
+
 ![](HowtoUse1_scalar.png)
 
 For a vector function:
+
 ![](HowtoUse2_vector.png)
 
 # Software Orgnaization
@@ -60,11 +58,7 @@ Package will be distributed with PyPI. We will create *pyproject.toml* and *setu
 #### Package Framework
 Since we don't have too many modules to work with and we aren't building any sort of application, a packaging framework won't be used to avoid overcomplicating development.
 
-# Implementation (Jie to update)
-# core data structure, classes, method and name attributes, give example
-# like dual numbers, forward mode, fast forward mode, what methods are in which
-# external dependencies, dealing with elementary functions
-# 
+# Implementation 
 
 1. Core data structure: 
 We will primarily use arrays. We will design our own data structure for dual numbers. 
@@ -74,9 +68,14 @@ We will implement 2 classes:
 - Differentation 
 - DualNumber
 
+Example class structure and methods inside:
+
+![](autodiff.png)
+
 3. Methods and name attributes: 
 Basic methods will include *forward*, *reverse*, *primaltrace*, *tangenttrace*, etc.
 Sample method will be executed as the following:
+
 ![](add_method.png)
 
  
