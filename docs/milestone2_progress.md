@@ -1,10 +1,11 @@
 #### What tasks has each group member been assigned to for Milestone 2?
-
+=====
 Our group met over the weekend to discuss the work breakdown structure and project extensions. We decided to add a reverse mode implementation for the extension.
 
 __**Hannah**__: 
 
-I will work on implementing the trignometric functions for single input scalar functions (add, subtract, divide, multiply), implementing logarithmic functions (exp, pow, sqrt, etc.), and writing test cases for these functions. I will also start on creating a skeleton that is compatible with multiple inputs, along with their test cases.
+I will work on implementing the trignometric functions for single input scalar functions (add, subtract, negation, divide, multiply), implementing logarithmic functions (exp, pow, sqrt, etc.), and writing test cases for the functions that I did not write to ensure full coverage. I will also start on creating a skeleton that is compatible with multiple inputs, along with their test cases. Lastly, I will help on the reverse mode documentation. 
+
  
 __**Jie**__:
 
@@ -12,7 +13,7 @@ Implementation details (documentation for forward and reverse mode implementatio
 
 __**Taro**__:
 
-Implementation of minimum requirements (dual numbers)
+I will work on the implementation of minimum requirements (dual numbers) and implementation of trignometric functions, as well as the structure for when the value is a scalar versus an DualNum object. I will also work on writing test cases for the scalar functions.  
 
 __**Zach**__: 
 
@@ -20,14 +21,14 @@ How to download the package, setting up PyPI, how to use the package, how to dis
 
 
 #### What has each group member done since the submission of Milestone 1?
-
+====
 Each member updated the milestone1 file based on the feedbacks. 
 
-Hannah: Since the submission of Milestone 1, I went to office hours to discuss the implementation of feedback with a TF and added graphics for the chain rule and computational graphs in the milestone 1 document and summarized everyone's implemented feedback for each section of the milestone. I also met with my groupmmates to discuss the work breakdown to complete milestone 2.
+Hannah: Since the submission of Milestone 1, I went to office hours to discuss the implementation of feedback with a TF and added graphics for the chain rule and computational graphs in the milestone 1 document and summarized everyone's implemented feedback for each section of the milestone. I also met with my groupmmates to discuss the work breakdown to complete milestone 2. I also started writing the function overloads for __add__, __radd__, __mul__, __rmul__, __neg__, __div__, __rdiv__, __pow___, and __rpow__.
 
 Jie:
 
-Taro:
+Taro: Since the submission of Milestone 1, I went to office hours to discuss feedback implementation, worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
 
 Zach:
 
