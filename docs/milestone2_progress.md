@@ -13,7 +13,7 @@ Implementation details (documentation for forward and reverse mode implementatio
 
 __**Taro**__:
 
-Implementation of minimum requirements (dual numbers) and implementation of trignometric functions. 
+I will work on the implementation of minimum requirements (dual numbers) and implementation of trignometric functions, as well as the structure for when the value is a scalar versus an DualNum object. I will also work on writing test cases for the scalar functions.  
 
 __**Zach**__: 
 
@@ -28,7 +28,7 @@ Hannah: Since the submission of Milestone 1, I went to office hours to discuss t
 
 Jie:
 
-Taro:
+Taro: Since the submission of Milestone 1, I went to office hours to discuss feedback implementation, worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
 
 Zach:
 
