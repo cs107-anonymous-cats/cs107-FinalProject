@@ -14,7 +14,7 @@ I will work on writing the test cases for the code (dual numbers) and write up t
 
 __**Taro**__:
 
-I will work on the implementation of minimum requirements (dual numbers) and implementation of trignometric functions, as well as the structure for when the value is a scalar versus an DualNum object. I will also work on writing test cases for the scalar functions.  
+I will work of the forward mode of automatic differentiation, specifically the dual numbers class and implementation of trignometric functions, as well as dealing with the case  when the value used in a function is a scalar versus a DualNum object. I will also work on writing test cases for the scalar functions.  
 
 __**Zach**__: 
 
@@ -33,7 +33,8 @@ __**Jie**__:
 Since the submission of Milestone 1, I went to office hours to discuss feedbacks on the section of implementation. I worked with Hannah and Taro on understanding and fixing the code, worked with Zach to write the test cases. Met with the TF to discuss the deliverables in the same meeting as others. I improved the sections of the implementation based on the feedbacks. 
 
 __**Taro**__:
-Since the submission of Milestone 1, I went to office hours to discuss feedback implementation, worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
+Since the submission of Milestone 1, I went to office hours to discuss feedback implementation and I have updated the documentation according to the feedback. We also worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
 
 __**Zach**__:
+
 
