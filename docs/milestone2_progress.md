@@ -17,4 +17,3 @@ Jie:
 Taro:
 Zach:
 
-Qn: do we use codecov? do we edit the intro and background. what goes into the how to use piece. what's in software organization? what's in the future features
