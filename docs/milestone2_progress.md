@@ -10,7 +10,7 @@ I will work on implementing the trignometric functions for single input scalar f
  
 __**Jie**__:
 
-Implementation details (documentation for forward and reverse mode implementation)
+I will work on writing the test cases for the code (dual numbers) and write up the sections on the Implementation details (documentation for forward and reverse mode implementation). I will also review the code written by others. 
 
 __**Taro**__:
 
@@ -30,12 +30,11 @@ __**Hannah**__:
 Since the submission of Milestone 1, I went to office hours to discuss the implementation of feedback with a TF and added graphics for the chain rule and computational graphs in the milestone 1 document and summarized everyone's implemented feedback for each section of the milestone. I also met with my groupmmates to discuss the work breakdown to complete milestone 2. I also started writing the function overloads for __add__, __radd__, __mul__, __rmul__, __neg__, __div__, __rdiv__, __pow___, and __rpow__.
 
 __**Jie**__:
+Since the submission of Milestone 1, I went to office hours to discuss feedbacks on the section of implementation. I worked with Hannah and Taro on understanding and fixing the code, worked with Zach to write the test cases. Met with the TF to discuss the deliverables in the same meeting as others. I improved the sections of the implementation based on the feedbacks. 
 
 __**Taro**__:
 Since the submission of Milestone 1, I went to office hours to discuss feedback implementation and I have updated the documentation according to the feedback. We also worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
 
 __**Zach**__:
 
-Notes to the group/questions we discussed with Sehaj:
-Qn: do we use codecov? yes we do not need to use TravisCI but we should take a screen shot of the results of our tests. Codecov will just look if we are testing most of the code. 90% coverage should be enoug.
-Do we edit the intro and background. what goes into the how to use piece? what's in software organization? We will discuss that next week once we get feedback on Milestone 2A. What's in the future features? Probably reverse mode is a good idea.
+
