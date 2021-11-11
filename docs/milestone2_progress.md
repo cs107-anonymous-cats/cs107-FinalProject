@@ -14,7 +14,7 @@ Implementation details (documentation for forward and reverse mode implementatio
 
 __**Taro**__:
 
-I will work on the implementation of minimum requirements (dual numbers) and implementation of trignometric functions, as well as the structure for when the value is a scalar versus an DualNum object. I will also work on writing test cases for the scalar functions.  
+I will work of the forward mode of automatic differentiation, specifically the dual numbers class and implementation of trignometric functions, as well as dealing with the case  when the value used in a function is a scalar versus a DualNum object. I will also work on writing test cases for the scalar functions.  
 
 __**Zach**__: 
 
@@ -32,8 +32,10 @@ Since the submission of Milestone 1, I went to office hours to discuss the imple
 __**Jie**__:
 
 __**Taro**__:
-Since the submission of Milestone 1, I went to office hours to discuss feedback implementation, worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
+Since the submission of Milestone 1, I went to office hours to discuss feedback implementation and I have updated the documentation according to the feedback. We also worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
 
 __**Zach**__:
 
-Qn: do we use codecov? do we edit the intro and background. what goes into the how to use piece. what's in software organization? what's in the future features
+Notes to the group/questions we discussed with Sehaj:
+Qn: do we use codecov? yes we do not need to use TravisCI but we should take a screen shot of the results of our tests. Codecov will just look if we are testing most of the code. 90% coverage should be enoug.
+Do we edit the intro and background. what goes into the how to use piece? what's in software organization? We will discuss that next week once we get feedback on Milestone 2A. What's in the future features? Probably reverse mode is a good idea.
