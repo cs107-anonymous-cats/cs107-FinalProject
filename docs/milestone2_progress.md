@@ -36,5 +36,4 @@ __**Taro**__:
 Since the submission of Milestone 1, I went to office hours to discuss feedback implementation and I have updated the documentation according to the feedback. We also worked with Hannah on writing the overloading of trignometric functions and creating the DualNum class structure. I also met with the TF to discuss milestone 2 deliverables.
 
 __**Zach**__:
-
-
+Since the submission of Milestone1, I worked with the group to begin writing tests for the code written by Hannah and Taro and to help debug the elementary functions. I also discussed the deliverables of Milestone 2 in a meeting with the group. Like everyone else, I updated milestone1 based on TF feedback as well. 
