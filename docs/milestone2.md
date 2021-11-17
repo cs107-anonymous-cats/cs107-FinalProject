@@ -36,19 +36,19 @@ For a scalar function:
 ![](HowtoUse1_scalar.png)
 
 For a vector function:
+Note: For now vector functions are not suported. This functionality will be soon implemented and an example will be given here.
 
 ![](HowtoUse2_vector.png)
 
-# Software Orgnaization
+# Software Organization
 
 #### Directory Structure
 Will be laid out as follows: 
 ![](directory_structure.png)
 
 #### Modules
-**dual** module will contain the class definition and methods for our dual number structure.
-**autodiff** module will contain the class definition and methods for implementing automatic differentiation (using dual numbers).
- 
+**DualNum** module contains the class definition and methods for using dual numbers and hence using automatic differentiation.
+
 #### Testing and Coverage
 TravisCI will be used for managing the testing suite. CodeCov will ensure proper coverage for our source code.
 
@@ -61,27 +61,22 @@ Since we don't have too many modules to work with and we aren't building any sor
 # Implementation 
 
 1. Core data structure: 
-We will primarily use arrays. We designed our own data structure for DualNumber, which contains the value and derivative of the functio. (describe what does it)
+We will primarily use arrays when we will implement automatic differentiation for vector functions. We designed our own data structure for DualNumber, which contains the value and derivative of the functio. Every memebr of the class DualNumber has a value and a derivative associated to it.
 
 2. Classes to implement: 
-We implemented 1 class: DualNumber
+We implement one class called DualNumber.
 
-Example class structure and methods inside:
-
-![](autodiff.png)
-
-3. Methods and name attributes: (tell a list
-Basic methods will include *forward*, *reverse*, *primaltrace*, *tangenttrace*, etc.
-Sample method will be executed as the following:
+3. Methods, attributes and Elementary Functions: 
+All the following methods are overwritten for members of the DualNumber class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
 
 ![](add_method.png)
 
  
-4. External dependencies: (explain why
-We will likely use **scipy**, **numpy** and **simpy**. 
+4. External dependencies:
+There is only one dependency **numpy** which is needed to overwrite the elementary functions. 
 
-5. Deal with elementary functions: we will overload those functions. sin, cos,tang,  mult/add is, describe alittle, user will call this. Newton method and test should be implemented in another file. 
-
+5. Future Features: 
+We will implement forward mode for vector functions as well as reverse mode in the future.
 
 # Licensing
 
