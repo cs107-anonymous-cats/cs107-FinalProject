@@ -33,7 +33,7 @@ import AutDiff as ad
 
 For a scalar function: 
 
-![](HowtoUse1_scalar.png)
+![](HowtoUse1_scalarV2.png)
 
 For a vector function:
 Note: For now vector functions are not suported. This functionality will be soon implemented and an example will be given here.
@@ -69,7 +69,7 @@ We implement one class called DualNumber.
 3. Methods, attributes and Elementary Functions: 
 All the following methods are overwritten for members of the DualNumber class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
 
-![](add_method.png)
+![](add_methodV2.png)
 
  
 4. External dependencies:
