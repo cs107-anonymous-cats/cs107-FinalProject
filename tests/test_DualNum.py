@@ -1,4 +1,4 @@
-from src.dualnum import *
+from src.DualNum import *
 import pytest
 
 
@@ -40,8 +40,8 @@ def test_add_and_pow():
     assert y.val == 13 and y.der == 45.0
 
 def test_pow2():
-    y=DualNum(1,1)**DualNum(2,1)
-    assert y.val == 1 and y.der == 2.0
+    y=3**DualNum(1,0)+5**DualNum(1,0)
+    assert y.val == 8 and y.der == 0.0
 
 def test_radd():
     y = 10 + DualNum(1,1)
@@ -63,9 +63,11 @@ def test_truediv():
     y = DualNum(1,1)/10
     assert y.val == 0.1 and y.der == 0.1
 
-def test_truediv2():
-    y = DualNum(1,1)/DualNum(4,2)
-    assert y.val == 0.25 and y.der == 0.125
+def test_rtruediv():
+    y = 10/DualNum(1,1)
+    assert y.val == 10.0 and y.der == -10.0
+
+
 
 
 
