@@ -19,10 +19,9 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-Download from git using:
-'''console
+Download from git using:  
+
 git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git
-'''
 
 #### Dependencies 
 
