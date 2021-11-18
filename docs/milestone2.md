@@ -61,19 +61,55 @@ Since we don't have too many modules to work with and we aren't building any sor
 # Implementation 
 
 1. Core data structure: 
-We will primarily use arrays when we will implement automatic differentiation for vector functions. We designed our own data structure for DualNumber, which contains the value and derivative of the functio. Every memebr of the class DualNumber has a value and a derivative associated to it.
+
+We primarily used arrays when implementing the automatic differentiation for vector functions. We designed our own data structure in DualNum. This class object takes two input attributes: val and der. We developed several methods in the class, which will be outlined in the following sections. This class object can be used to calculate the value and derivative of a function. 
 
 2. Classes to implement: 
-We implement one class called DualNumber.
+We implemented 1 class: DualNumber. We overloaded all the basic operations, and created elemental functions as static methods. 
 
-3. Methods, attributes and Elementary Functions: 
-All the following methods are overwritten for members of the DualNumber class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
+A snippet of the class structure is as follows:
 
+![](dualnum_example.png)
+
+3. Methods and name attributes: 
+**Attributes:**
+- self.val: stores the value of the DualNum object. In practice, this will be the value of a function 
+- self.der: stores the derivative of the DualNum object. 
+
+All the following methods are overwritten for members of the DualNum class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
 ![](add_methodV2.png)
 
+**Basic operations:**
+- *__add__*: for addition.
+- *__radd__*: for reverse addition.
+- *__mul__*: for multiplication.
+- *__rmul__*: for reverse multiplication.
+- *__sub__*: for subtraction.
+- *__rsub__*: for reverse subtraction.
+- *__truediv__*: for division. 
+- *__rtruedive__*: for reverse division. 
+- *__neg__*: for negation.
+- *__pow__*: for the power calculation.i.e. DualNum(1,1)^3. 
+- *__rpow__*: for the reverse power calculation.i.e. 3^DualNum(1,1)
+
+**Static methods:** for trigonometry operations as well as exponentials and ln operations. 
+- *__sin__*
+- *__cos__*
+- *__exp__*
+- *__ln__*
+
+An example of the *__sin__* function is as follows:
+![](sin.png)
  
-4. External dependencies:
-There is only one dependency **numpy** which is needed to overwrite the elementary functions. 
+4. External dependencies: 
+We used **numpy** as the sole dependency package, because it is fast and offers powerful tools for mathematical operations. At this stage we do not require other dependencies such as simpy or scipy. 
+
+5. Deal with elementary functions: 
+We have desgined a *test_DualNum.py* file that achieved 96% of the code coverage. See below for the result. 
+![](test_DualNum.png)
+
+Some simple user cases for some methods: 
+![](test_cases.png)
 
 5. Future Features: 
 We will implement forward mode for vector functions as well as reverse mode in the future.
