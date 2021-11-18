@@ -1,6 +1,6 @@
 # Introduction
 
-This package implements the automatic differentiation. This is important for complex computational problems, including optimization. 
+This package implements automatic differentiation. This is important for complex computational problems, including optimization. 
 
 # Background 
 
@@ -15,19 +15,30 @@ The following is an example of a computational graph:
 Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 
-# How to Use AutomaticDifferentiation
+# How to Use DualNum
 
 #### Installing the package
 
-python3 -m pip install AutDiff
+Download from git using:
+'''console
+git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git
+'''
 
 #### Dependencies 
 
-python3 -m pip install requirements.txt
+pip3 install -r requirements.txt
+
+#### Testing the package
+
+In */tests* directory, run the following commands:
+'''console
+bash run_tests.sh pytest -v
+bash run_tests.sh pytest --cov=.
+'''console
 
 #### Importing the package: 
 
-import AutDiff as ad
+from dualnum import DualNum
 
 #### Examples:
 
@@ -47,12 +58,13 @@ Will be laid out as follows:
 ![](directory_structure.png)
 
 #### Modules
-**DualNum** module contains the class definition and methods for using dual numbers and hence using automatic differentiation.
-
+**DualNum** module will contain the class definition and methods for our dual number structure and computes forward mode automatic differentiation.
+ 
 #### Testing and Coverage
-TravisCI will be used for managing the testing suite. CodeCov will ensure proper coverage for our source code.
+We currently use pytest for both testing and coverage on its own, but we will introduce a CI and CodeCov when it becomes available to us.
 
 #### Package Distribution
+As of now, our package is distributed as a downloadable GitHub repo (See download instructions in "How To Use DualNum".
 Package will be distributed with PyPI. We will create *pyproject.toml* and *setup.cfg* files and then use **build** to build and upload the project.
 
 #### Package Framework
