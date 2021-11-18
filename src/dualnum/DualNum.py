@@ -46,12 +46,12 @@ class DualNum:
             return DualNum(self.val / other.val, (self.der * other.val - self.val * other.der)/(other.val**2))
 
     # Overload rdiv
-    # def __rtruediv__(self, other):
-    #     try:
-    #         return DualNum(other.val / self.val, (other.der * self.val - other.val * self.der)/(self.val**2))
-    #     except:
-    #         other=DualNum(other,0)
-    #         return DualNum(other.val / self.val, (other.der * self.val - other.val * self.der)/(self.val**2))
+    def __rtruediv__(self, other):
+         try:
+             return DualNum(other.val / self.val, (other.der * self.val - other.val * self.der)/(self.val**2))
+         except:
+             other=DualNum(other,0)
+             return DualNum(other.val / self.val, (other.der * self.val - other.val * self.der)/(self.val**2))
 
     # Overload negation
     def __neg__(self):
@@ -65,11 +65,13 @@ class DualNum:
             exponent=DualNum(exponent,0)
             return DualNum(self.val ** exponent.val, np.exp(exponent.val * np.log(self.val)) * (exponent.der * np.log(self.val) + (exponent.val / self.val) * self.der))
 
-
-    # #I don't think this is necessary?
     # Overload rpow
-    # def __rpow__(self, exponent):
-    #     return exponent.__pow__(self)
+    def __rpow__(self, exponent):
+        try:
+          return DualNum(exponent.val ** self.val, np.exp(self.val * np.log(exponent.val)) * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
+        except:
+          exponent=DualNum(exponent,0)
+          return DualNum(exponent.val ** self.val, np.exp(self.val * np.log(exponent.val)) * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
 
     # Overload sin
     @staticmethod  
@@ -109,12 +111,9 @@ class DualNum:
 
 """
 #Some simple tests
-y=2*DualNum.sin(DualNum(0,1))+3
-print(y.val,y.der)
-y=DualNum.sin(5)
-print(y.der,y.val)
-y=10*DualNum(1,1)**3+3*DualNum(1,1)**5
+y=3/2**DualNum(1,1)
 print(y.val,y.der)
 """
+
 
 
