@@ -33,22 +33,22 @@ import AutDiff as ad
 
 For a scalar function: 
 
-![](HowtoUse1_scalar.png)
+![](HowtoUse1_scalarV2.png)
 
 For a vector function:
+Note: For now vector functions are not suported. This functionality will be soon implemented and an example will be given here.
 
 ![](HowtoUse2_vector.png)
 
-# Software Orgnaization
+# Software Organization
 
 #### Directory Structure
 Will be laid out as follows: 
 ![](directory_structure.png)
 
 #### Modules
-**dual** module will contain the class definition and methods for our dual number structure.
-**autodiff** module will contain the class definition and methods for implementing automatic differentiation (using dual numbers).
- 
+**DualNum** module contains the class definition and methods for using dual numbers and hence using automatic differentiation.
+
 #### Testing and Coverage
 TravisCI will be used for managing the testing suite. CodeCov will ensure proper coverage for our source code.
 
@@ -61,7 +61,8 @@ Since we don't have too many modules to work with and we aren't building any sor
 # Implementation 
 
 1. Core data structure: 
-We designed our own data structure in  DualNum. This class object takes two input attributes: val and der. We developed several methods in the class, which will be outlined in the following sections. This class object can be used to calculate the value and derivative of a function. 
+
+We primarily used arrays when implementing the automatic differentiation for vector functions. We designed our own data structure in DualNum. This class object takes two input attributes: val and der. We developed several methods in the class, which will be outlined in the following sections. This class object can be used to calculate the value and derivative of a function. 
 
 2. Classes to implement: 
 We implemented 1 class: DualNumber. We overloaded all the basic operations, and created elemental functions as static methods. 
@@ -74,6 +75,9 @@ A snippet of the class structure is as follows:
 **Attributes:**
 - self.val: stores the value of the DualNum object. In practice, this will be the value of a function 
 - self.der: stores the derivative of the DualNum object. 
+
+All the following methods are overwritten for members of the DualNum class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
+![](add_methodV2.png)
 
 **Basic operations:**
 - *__add__*: for addition.
@@ -107,6 +111,8 @@ We have desgined a *test_DualNum.py* file that achieved 96% of the code coverage
 Some simple user cases for some methods: 
 ![](test_cases.png)
 
+5. Future Features: 
+We will implement forward mode for vector functions as well as reverse mode in the future.
 
 # Licensing
 
