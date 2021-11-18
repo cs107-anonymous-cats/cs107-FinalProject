@@ -19,10 +19,9 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-Download from git using:
-'''console
+Download from git using:  
+
 git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git
-'''
 
 #### Dependencies 
 
@@ -30,11 +29,12 @@ pip3 install -r requirements.txt
 
 #### Testing the package
 
-In */tests* directory, run the following commands:
-'''console
-bash run_tests.sh pytest -v
-bash run_tests.sh pytest --cov=.
-'''console
+In */tests* directory, run the following commands:  
+
+bash run_tests.sh pytest -v  
+
+bash run_tests.sh pytest --cov=.  
+
 
 #### Importing the package: 
 
@@ -64,7 +64,8 @@ Will be laid out as follows:
 We currently use pytest for both testing and coverage on its own, but we will introduce a CI and CodeCov when it becomes available to us.
 
 #### Package Distribution
-As of now, our package is distributed as a downloadable GitHub repo (See download instructions in "How To Use DualNum".
+As of now, our package is distributed as a downloadable GitHub repo (See download instructions in "How To Use DualNum".  
+
 Package will be distributed with PyPI. We will create *pyproject.toml* and *setup.cfg* files and then use **build** to build and upload the project.
 
 #### Package Framework
