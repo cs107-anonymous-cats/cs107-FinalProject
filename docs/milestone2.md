@@ -121,7 +121,7 @@ Some simple user cases for some methods:
 
 ![](test_case.png)
 
-5. Future Features: 
+#  Future Features: 
 We will implement forward mode for vector functions to handle multiple inputs as well as implementing reverse mode, which will be the main extension of our project. We chose the reverse mode as our extension because when the number of inputs is significantly greater than the number of outputs, the reverse mode will be computationally faster and efficient because fewer operations need to be performed. On the other hand, when the number of inputs is significantly smaller than the number outputs, the forward mode uses fewer computations to calculate the derivative. Thus, having both forward and reverse mode will offer our package more versatility. 
 
 A challenge we will face is determining how to store and calculate partial derviatives, which is required in the reverse mode extension in the backward pass. Wewill most likely store partials as nodes in a common array, which is known as a tape in Automatic Differentiation literature. The tape will enable us to see each operation performed on the expression, which helps to compute the gradient when read in reverse. We will also probably create a new package for the reverse mode.
