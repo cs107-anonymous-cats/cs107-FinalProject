@@ -60,18 +60,20 @@ class DualNum:
     # Overload power
     def __pow__(self, exponent):
         try:
-            return DualNum(self.val ** exponent.val, np.exp(exponent.val * np.log(self.val)) * (exponent.der * np.log(self.val) + (exponent.val / self.val) * self.der))
+            if exponent.val!=None:
+                assert self.val>=0, 'Cannot have (dual) number with negative value raised to a dual number power since encounter log(value) in derivative'
+                return DualNum(self.val ** exponent.val, self.val**exponent.val * (exponent.der * np.log(self.val) + (exponent.val / self.val) * self.der))
         except:
             exponent=DualNum(exponent,0)
-            return DualNum(self.val ** exponent.val, np.exp(exponent.val * np.log(self.val)) * (exponent.der * np.log(self.val) + (exponent.val / self.val) * self.der))
+            return DualNum(self.val ** exponent.val, self.val**exponent.val * ((exponent.val / self.val) * self.der))
 
     # Overload rpow
     def __rpow__(self, exponent):
         try:
-          return DualNum(exponent.val ** self.val, np.exp(self.val * np.log(exponent.val)) * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
+          return DualNum(exponent.val ** self.val, exponent.val**self.val * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
         except:
           exponent=DualNum(exponent,0)
-          return DualNum(exponent.val ** self.val, np.exp(self.val * np.log(exponent.val)) * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
+          return DualNum(exponent.val ** self.val, exponent.val**self.val * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
 
     # Overload sin
     @staticmethod  
@@ -109,9 +111,16 @@ class DualNum:
             other=DualNum(other,0)
             return DualNum(np.log(other.val), 1/other.val*other.der)
 
+
 """
 #Some simple tests
-y=3/2**DualNum(1,1)
+y=(DualNum.cos(2)**2.0 + 2**2.0)**0.5
+print(y.val,y.der)
+"""
+
+"""
+#problem that still remains and for some reason the assert error doesn't work. The error is not triggered
+y=(DualNum.cos(2)**DualNum(1,1))
 print(y.val,y.der)
 """
 
