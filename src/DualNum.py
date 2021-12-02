@@ -74,6 +74,19 @@ class DualNum:
         except:
           exponent=DualNum(exponent,0)
           return DualNum(exponent.val ** self.val, exponent.val**self.val * (self.der * np.log(exponent.val) + (self.val / exponent.val) * exponent.der))
+    
+    # Overload equal
+    def __eq__(self, other):
+	      try:
+	        output = (self.val == other.val) and np.array_equal(self.der, other.der)
+	      except AttributeError:
+	  # output is false because scalars are not equal to variables
+	      output = False
+	return output
+
+    # Overload not equal
+    def __ne__(self, other):
+	return not self.__eq__(other)
 
     # Overload sin
     @staticmethod  
@@ -111,7 +124,84 @@ class DualNum:
             other=DualNum(other,0)
             return DualNum(np.log(other.val), 1/other.val*other.der)
 
+    # Overload tan
+    @staticmethod
+    def tan(other):
+	try:
+	    checkdomain = other.val % np.pi == (np.pi/2)
+	    if checkdomain:
+		raise ValueError(
+		    'Cannot take tangents of multiples of pi/2 + (pi * n), where n is a positive integer')
+	    new_other = np.tan(other.val)
+	    tan_deriv = 1 / np.power(np.cos(other.der), 2)
+	    new_der = other.der * tan_deriv
+	    
+            tan = DualNum(new_other, new_der)
 
+	    return tan
+
+        except AttributeError:
+	    return np.tan(other)
+
+    # Overload arcsin
+    @staticmethod
+    def arcsin(other):
+	try:
+	    if other.val > 1 or other.val <-1:
+	        raise ValueError('please use value between -1 and 1, inclusive')
+	    else:
+	        new_other = np.arcsin(other.val)
+     	        new_der = 1 / np.sqrt(1 - other.val**2)
+	
+	    arcsin = DualNum(new_other, new_der)
+	    return arcsin
+
+	except AttributeError:
+	    return np.arcsin(other)
+    
+   # Overload arccos
+   @staticmethod
+   def arccos(other):
+	try:
+	    if other.val > 1 or other.val <-1:
+		raise ValueError('please use value between -1 and 1, inclusive')
+	    else:
+		new_other = np.arccos(other.val)
+		new_der = -1 / np.sqrt(1 - other.val**2)
+	    
+	    arccos = DualNum(new_other, new_der)
+            return arccos
+
+	except AttributeError:
+	    return np.arccos(other)
+
+   # Overload arctangent
+   @staticmethod
+   def arctan(other):
+	try:
+	    new_other = np.arctan(other.val)
+	    arctan_deriv = 1 / (1 + np.power(other.val, 2))
+	    new_der = other.der * arctan_deriv
+	    
+            arctan = DualNum(new_other, new_der)
+	    return arctan
+	
+	except AttributeError:
+	    return np.arctan(other)
+
+
+   # Overload sinh
+   def sinh(other):
+	try:
+	    new_other = np.sinh(other.val)
+	    sinh_deriv = np.cosh(other.val)
+	    new_der = other.der * sinh_deriv
+	    
+	    sinh = DualNum(new_other, new_der)
+	    return sinh
+	except AttributeError:
+	    return np.sinh(other) 
+	 
 """
 #Some simple tests
 y=(DualNum.cos(2)**2.0 + 2**2.0)**0.5

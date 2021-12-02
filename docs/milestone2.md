@@ -1,6 +1,6 @@
 # Introduction
 
-This package implements the automatic differentiation. This is important for complex computational problems, including optimization. 
+This package implements automatic differentiation. This is important for complex computational problems, including optimization. 
 
 # Background 
 
@@ -15,19 +15,30 @@ The following is an example of a computational graph:
 Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 
-# How to Use AutomaticDifferentiation
+# How to Use DualNum
 
 #### Installing the package
 
-python3 -m pip install AutDiff
+Download from git using:  
+
+git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git
 
 #### Dependencies 
 
-python3 -m pip install requirements.txt
+pip3 install -r requirements.txt
+
+#### Testing the package
+
+In */tests* directory, run the following commands:  
+
+bash run_tests.sh pytest -v  
+
+bash run_tests.sh pytest --cov=.  
+
 
 #### Importing the package: 
 
-import AutDiff as ad
+from dualnum import DualNum
 
 #### Examples:
 
@@ -47,12 +58,14 @@ Will be laid out as follows:
 ![](directory_structure.png)
 
 #### Modules
-**DualNum** module contains the class definition and methods for using dual numbers and hence using automatic differentiation.
-
+**DualNum** module will contain the class definition and methods for our dual number structure and computes forward mode automatic differentiation.
+ 
 #### Testing and Coverage
-TravisCI will be used for managing the testing suite. CodeCov will ensure proper coverage for our source code.
+We currently use pytest for both testing and coverage on its own, but we will introduce a CI and CodeCov when it becomes available to us.
 
 #### Package Distribution
+As of now, our package is distributed as a downloadable GitHub repo (See download instructions in "How To Use DualNum".  
+
 Package will be distributed with PyPI. We will create *pyproject.toml* and *setup.cfg* files and then use **build** to build and upload the project.
 
 #### Package Framework
@@ -61,22 +74,70 @@ Since we don't have too many modules to work with and we aren't building any sor
 # Implementation 
 
 1. Core data structure: 
-We will primarily use arrays when we will implement automatic differentiation for vector functions. We designed our own data structure for DualNumber, which contains the value and derivative of the functio. Every memebr of the class DualNumber has a value and a derivative associated to it.
+
+We primarily used arrays when implementing the automatic differentiation for vector functions. We designed our own data structure in DualNum. This class object takes two input attributes: val and der. We developed several methods in the class, which will be outlined in the following sections. This class object can be used to calculate the value and derivative of a function. 
+
 
 2. Classes to implement: 
-We implement one class called DualNumber.
 
-3. Methods, attributes and Elementary Functions: 
-All the following methods are overwritten for members of the DualNumber class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
+We implemented 1 class: DualNumber. We overloaded all the basic operations, and created elemental functions as static methods. 
 
+A snippet of the class structure is as follows:
+
+![](dualnum_example.png)
+
+3. Methods and name attributes: 
+
+**Attributes:**
+
+- `self.val`: stores the value of the DualNum object. In practice, this will be the value of a function 
+- `self.der`: stores the derivative of the DualNum object. 
+
+All the following methods are overwritten for members of the DualNum class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
 ![](add_methodV2.png)
 
- 
-4. External dependencies:
-There is only one dependency **numpy** which is needed to overwrite the elementary functions. 
+**Basic operations:**
 
-5. Future Features: 
-We will implement forward mode for vector functions as well as reverse mode in the future.
+- `__add__`: for addition.
+- `__radd__`: for reverse addition.
+- `__mul__`: for multiplication.
+- `__rmul__`: for reverse multiplication.
+- `__sub__`: for subtraction.
+- `__rsub__`: for reverse subtraction.
+- `__truediv__`: for division. 
+- `__rtruedive__`: for reverse division. 
+- `__neg__`: for negation.
+- `__pow__`: for the power calculation.i.e. DualNum(1,1)^3. 
+- `__rpow__`: for the reverse power calculation.i.e. 3^DualNum(1,1)
+
+**Static methods:** for trigonometry operations as well as exponentials and ln operations. 
+
+- `__sin__`
+- `__cos__`
+- `__exp__`
+- `__ln__`
+
+An example of the `__sin__` function is as follows:
+![](sin.png)
+ 
+4. External dependencies: 
+
+We used **numpy** as the sole dependency package, because it is fast and offers powerful tools for mathematical operations. At this stage we do not require other dependencies such as simpy or scipy. 
+
+5. Deal with elementary functions: 
+
+We have desgined a **test_DualNum.py** file that achieved 96% of the code coverage. See below for the result. 
+
+![](test_DualNum.png)
+
+Some simple user cases for some methods: 
+
+![](test_case.png)
+
+# Future Features: 
+We will implement forward mode for vector functions to handle multiple inputs as well as implementing reverse mode, which will be the main extension of our project. We chose the reverse mode as our extension because when the number of inputs is significantly greater than the number of outputs, the reverse mode will be computationally faster and efficient because fewer operations need to be performed. On the other hand, when the number of inputs is significantly smaller than the number outputs, the forward mode uses fewer computations to calculate the derivative. Thus, having both forward and reverse mode will offer our package more versatility. 
+
+A challenge we will face is determining how to store and calculate partial derviatives, which is required in the reverse mode extension in the backward pass. Wewill most likely store partials as nodes in a common array, which is known as a tape in Automatic Differentiation literature. The tape will enable us to see each operation performed on the expression, which helps to compute the gradient when read in reverse. We will also probably create a new package for the reverse mode.
 
 # Licensing
 
