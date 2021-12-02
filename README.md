@@ -2,6 +2,7 @@
 ## Group 37
 
 ## Group members
+* Hannah Phan
 * Jie Sun
 * Zach Brown
 * Taro Spirig
