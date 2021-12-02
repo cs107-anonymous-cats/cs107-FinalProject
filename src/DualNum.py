@@ -156,8 +156,49 @@ class DualNum:
 
 	except AttributeError:
 	    return np.arcsin(other)
+    
+   # Overload arccos
+   @staticmethod
+   def arccos(other):
+	try:
+	    if other.val > 1 or other.val <-1:
+		raise ValueError('please use value between -1 and 1, inclusive')
+	    else:
+		new_other = np.arccos(other.val)
+		new_der = -1 / np.sqrt(1 - other.val**2)
+	    
+	    arccos = DualNum(new_other, new_der)
+            return arccos
+
+	except AttributeError:
+	    return np.arccos(other)
+
+   # Overload arctangent
+   @staticmethod
+   def arctan(other):
+	try:
+	    new_other = np.arctan(other.val)
+	    arctan_deriv = 1 / (1 + np.power(other.val, 2))
+	    new_der = other.der * arctan_deriv
+	    
+            arctan = DualNum(new_other, new_der)
+	    return arctan
+	
+	except AttributeError:
+	    return np.arctan(other)
 
 
+   # Overload sinh
+   def sinh(other):
+	try:
+	    new_other = np.sinh(other.val)
+	    sinh_deriv = np.cosh(other.val)
+	    new_der = other.der * sinh_deriv
+	    
+	    sinh = DualNum(new_other, new_der)
+	    return sinh
+	except AttributeError:
+	    return np.sinh(other) 
 	 
 """
 #Some simple tests
