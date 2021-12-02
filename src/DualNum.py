@@ -86,8 +86,6 @@ class DualNum:
     def __ne__(self, other):
 	return not self.__eq__(other)
 
-
-
     # Overload sin
     @staticmethod  
     def sin(other):
@@ -123,6 +121,26 @@ class DualNum:
         except:
             other=DualNum(other,0)
             return DualNum(np.log(other.val), 1/other.val*other.der)
+
+    # Overload tan
+    @staticmethod
+    def tan(other):
+	try:
+	    checkdomain = other.var % np.pi == (np.pi/2)
+	    if checkdomain:
+		raise ValueError(
+		    'Cannot take tangents of multiples of pi/2 + (pi * n), where n is a positive integer')
+	    new_other = np.tan(other.var)
+	    tan_deriv = 1 / np.power(np.cos(other.der), 2)
+	    new_der = other.der * tan_deriv
+	    
+            tan = DualNum(new_other, new_der)
+
+	    return tan
+
+        except AttributeError:
+	    return np.tan(other)
+
 
 """
 #Some simple tests
