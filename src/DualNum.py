@@ -126,11 +126,11 @@ class DualNum:
     @staticmethod
     def tan(other):
 	try:
-	    checkdomain = other.var % np.pi == (np.pi/2)
+	    checkdomain = other.val % np.pi == (np.pi/2)
 	    if checkdomain:
 		raise ValueError(
 		    'Cannot take tangents of multiples of pi/2 + (pi * n), where n is a positive integer')
-	    new_other = np.tan(other.var)
+	    new_other = np.tan(other.val)
 	    tan_deriv = 1 / np.power(np.cos(other.der), 2)
 	    new_der = other.der * tan_deriv
 	    
@@ -141,7 +141,24 @@ class DualNum:
         except AttributeError:
 	    return np.tan(other)
 
+    # Overload arcsin
+    @staticmethod
+    def arcsin(other):
+	try:
+	    if other.val > 1 or other.val <-1:
+	        raise ValueError('please use value between -1 and 1, inclusive')
+	    else:
+	        new_other = np.arcsin(other.val)
+     	        new_der = 1 / np.sqrt(1 - other.val**2)
+	
+	    arcsin = DualNum(new_other, new_der)
+	    return arcsin
 
+	except AttributeError:
+	    return np.arcsin(other)
+
+
+	 
 """
 #Some simple tests
 y=3/2**DualNum(1,1)
