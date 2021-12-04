@@ -227,6 +227,12 @@ class DualNum:
 	
 	except AttributeError:
 	    return np.tanh(other)	 
+
+   # Overload sqrt
+   def sqrt(other):
+	if other < 0:
+	    raise ValueError('Cannot take square roots of negative values')
+	return other ** (1/2)
 """
 #Some simple tests
 y=(DualNum.cos(2)**2.0 + 2**2.0)**0.5
