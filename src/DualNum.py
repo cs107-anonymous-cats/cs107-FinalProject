@@ -201,7 +201,32 @@ class DualNum:
 	    return sinh
 	except AttributeError:
 	    return np.sinh(other) 
-	 
+  
+   # Overload cosh
+   def cosh(other):
+	try:
+	    new_other = np.cosh(other.val)
+	    cosh_deriv = np.sinh(other.val)
+	    new_der = other.der * cosh_deriv
+
+	    cosh = DualNum(new_other, new_der)
+	    return cosh
+	
+	except AtrributeError:
+	    return np.cosh(other)
+
+   # Overload tanh
+   def tanh(other):
+	try:
+	    new_other = np.tanh(other.val)
+	    tanh_deriv = 1 / np.power(np.cosh(other.val), 2)
+	    new_der = other.der * tanh_deriv
+
+	    tanh = DualNum(new_other, new_der)
+	    return tanh
+	
+	except AttributeError:
+	    return np.tanh(other)	 
 """
 #Some simple tests
 y=(DualNum.cos(2)**2.0 + 2**2.0)**0.5
