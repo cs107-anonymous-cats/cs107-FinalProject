@@ -58,14 +58,23 @@ class DualNum:
 	val: int or float; value of the user defined function(s) f evaluated at x = val
 	der: int or float; value of the initialized derivative/gradient/Jacobian of user defined function(s) f
 	seed: int, list, or array; the seed vector/derivative from parents	
-
+    '''
 
 
     def __init__(self, val, der, seed = np.array([1])):
-        self.val = val
-        self.der = der
+        
+	if isinstance(val, (int, float)):
+	    self.val = val
+	else:
+	    raise TypeError('Did not enter valid int or float.')
+	if isinstance(seed, (int, float)):
+	    seed = np.array([seed])
+	elif isinstance(seed, list):
+	    seed = np.array(seed)
+	self.der = seed
         
 
+	
     # Overload addition
     def __add__(self, other): 
         try:
