@@ -1,11 +1,16 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[11]:
+
+
 import numpy as np
 import re
 
 class AutoDiff:
-    def __init__(self, val, func, seed = None):
-    
     '''
     Initiates a function variable
+    
     Inputs
     ======
     self: AutoDiff object
@@ -16,26 +21,27 @@ class AutoDiff:
     =====
     For non-default seeds, the seed for forward mode is a dictionary of ints for each variable values, and the seed for reverse mode is a list of ints for each function.
     '''
-    forward_mode = True
-    if len(val) < len(func):
-        print('The number of variables < The number of functions. Use forward mode.')
-    elif len(val) > len(func):
-        print('The number of variables > The number of functions. Use reverse mode.')
-    else:
-        print('The number of variables = The number of functions. Use forward mode.')
-        
-    if forward_mode:
-        if (seed is not None) and (not isinstance(seed, dict)):
-            raise AttributeError('Forward mode needs a dictionary as a seed.')
-        output = Forward(val, func, seed)
+    def __init__(self, val, func, seed = None):
+        forward_mode = True
+        if len(val) < len(func):
+            print('The number of variables < The number of functions. Use forward mode.')
+        elif len(val) > len(func):
+            print('The number of variables > The number of functions. Use reverse mode.')
+        else:
+            print('The number of variables = The number of functions. Use forward mode.')
+    
+        if forward_mode:
+            if (seed is not None) and (not isinstance(seed, dict)):
+                raise AttributeError('Forward mode needs a dictionary as a seed.')
+            output = Forward(val, func, seed)
         else: 
             if (seed is not None) and (not isinstance(seed, list)):
                 raise AttributeError('Reverse mode needs a list as a seed with a seed for each function input.')
             output = Reverse(val, func, seed)
             
-    self.output = output
-    self.val = val
-    self.der = der
+        self.output = output
+        self.val = val
+        self.der = der
     
     def __repr__(self):
         return self.output.__repr__()
@@ -43,11 +49,87 @@ class AutoDiff:
     def __str__(self):
         return self.output.__str__()   
 
+class Forward():
+    '''
+    Creates a Forward AutoDiff Class
+    Inputs
+    ======
+    self: Forward AutoDiff object
+    val: int or float; value of the user defined function(s) f evaluated at x = val
+    func: function(s) to be differentiated (Dual or list)
+    seed: int, list, or array: the seed vector/derivates from parents
+    '''
+    
+    def __init__(self, val, func, seed = None):
+        
+        # check if functions are strings
+        str_check = [1 if isinstance(i, str) else 0 for i in func]
+        if len(str_check) != sum(str_check):
+            raise TypeError('Each function must be a string.')
+        else:
+            if isinstance(val, dict):
+                if seed is None:
+                    # create a default seed of 1 if seed is None
+                    seed = {val_name: 1 for val_name in list(val.keys())}
+                
+                # initializing all variable values
+                num_val = len(val)
+                self.val2idx = dict(zip(list(val.keys()), list(range(num_val))))
+                for val_name, val_value in val.items():
+                    der_ = np.zeros((num_val,))
+                    der_[self.val2idx[val_name]] = float(seed[val_name])
+                    exec(f'{val_name} = DualNum(float(val_value), der_)')
+                
+                # initializing all functions
+                # static methods
+                static_methods = ['log', 'sqrt', 'exp', 'sin', 'cos', 'tan', 'arcsin', 'arccos', 'arctan', 'sinh', 'cosh', 'tanh']
+
+                funcs = []
+                for function in func:
+                    for i in static_methods:
+                        if i in function:
+                            # for multiple but same static methods 
+                            function = re.sub(i + r'\(', 'DualNum.' + i + '(', function)
+                            function = re.sub('arcDualNum.', 'arc', function)
+                    funcs.append(eval(function))
+
+                self.val = np.array([i.val for i in funcs])
+                self.der = np.array([i.der for i in funcs])
+
+            else: 
+                raise TypeError('The variable should be a dictionary.')
+
+    
+    def __repr__(self):
+        output_str = 'Values \n'
+        for val_idx in range(self.val.shape[0]):
+            output_str =  output_str + 'Function F' + str(val_idx + 1) + ': ' + str(self.val[val_idx]) + '\n'
+
+        output_str = output_str + 'Gradients \n'
+
+        for func_idx in range(self.der.shape[0]):
+            output_str = output_str + 'Function F' + str(func_idx + 1) + ': ' + str(self.der[func_idx]) + '\n'
+
+        return output_str
+
+    def __str__(self):
+        output_str = 'Values \n'
+        for val_idx in range(self.val.shape[0]):
+            output_str =  output_str + 'Function F' + str(val_idx + 1) + ': ' + str(self.val[val_idx]) + '\n'
+
+        output_str = output_str + 'Gradients \n'
+
+        for func_idx in range(self.der.shape[0]):
+            output_str = output_str + 'Function F' + str(func_idx + 1) + ': ' + str(self.der[func_idx]) + '\n'
+
+        return output_str
+    
+    
 
 class DualNum:
-
     '''
     Creates a Dual Class that supports Auto Differentiation custom operations
+    
     Inputs
     ======
     self: DualNum object
@@ -192,18 +274,18 @@ class DualNum:
     def tan(other):
         try:
             checkdomain = other.val % np.pi == (np.pi/2)
-        if checkdomain:
-            raise ValueError('Cannot take tangents of multiples of pi/2 + (pi * n), where n is a positive integer')
-        new_other = np.tan(other.val)
-        tan_deriv = 1 / np.power(np.cos(other.der), 2)
-        new_der = other.der * tan_deriv
+            if checkdomain:
+                raise ValueError('Cannot take tangents of multiples of pi/2 + (pi * n), where n is a positive integer')
+            new_other = np.tan(other.val)
+            tan_deriv = 1 / np.power(np.cos(other.der), 2)
+            new_der = other.der * tan_deriv
         
-        tan = DualNum(new_other, new_der)
+            tan = DualNum(new_other, new_der)
         
-        return tan
+            return tan
 
         except AttributeError:
-        return np.tan(other)
+            return np.tan(other)
 
     # Overload arcsin
     @staticmethod
@@ -252,8 +334,9 @@ class DualNum:
             return np.arctan(other)
 
 
-   # Overload sinh
-   def sinh(other):
+    # Overload sinh
+    @staticmethod
+    def sinh(other):
         try:
             new_other = np.sinh(other.val)
             sinh_deriv = np.cosh(other.val)
@@ -264,8 +347,9 @@ class DualNum:
         except AttributeError:
             return np.sinh(other) 
 
-   # Overload cosh
-   def cosh(other):
+    # Overload cosh
+    @staticmethod
+    def cosh(other):
         try:
             new_other = np.cosh(other.val)
             cosh_deriv = np.sinh(other.val)
@@ -276,8 +360,9 @@ class DualNum:
         except AtrributeError:
             return np.cosh(other)
 
-   # Overload tanh
-   def tanh(other):
+    # Overload tanh
+    @staticmethod
+    def tanh(other):
         try:
             new_other = np.tanh(other.val)
             tanh_deriv = 1 / np.power(np.cosh(other.val), 2)
@@ -289,19 +374,10 @@ class DualNum:
         except AttributeError:
             return np.tanh(other)
 
-   # Overload sqrt
-   def sqrt(other):
+    # Overload sqrt
+    @staticmethod
+    def sqrt(other):
         if other < 0:
             raise ValueError('Cannot take square roots of negative values')
         return other ** (1/2)
-"""
-#Some simple tests
-y=(DualNum.cos(2)**2.0 + 2**2.0)**0.5
-print(y.val,y.der)
-"""
 
-"""
-#problem that still remains and for some reason the assert error doesn't work. The error is not triggered
-y=(DualNum.cos(2)**DualNum(1,1))
-print(y.val,y.der)
-"""
