@@ -1,9 +1,70 @@
 import numpy as np
+import re
 
+class AutoDiff:
+    def __init__(self, val, func, seed = None):
+    
+    '''
+	Initiates a function variable
+
+	Inputs
+	======
+	self: AutoDiff object
+	val: int or float; value of the user defined function(s) f evaluated at x = val
+	func: function(s) to be differentiated
+	seed: int, list, or array: the seed vector/derivates from parents
+
+	Notes
+	=====
+	For non-default seeds, the seed for forward mode is a dictionary of ints for each variable values, and the seed for reverse mode is a list of ints for each function.
+
+    '''
+	forward_mode = True
+	if len(val) < len(func):
+	    print('The number of variables < The number of functions. Use forward mode.')
+	elif len(val) > len(func):
+	    print('The number of variables > The number of functions. Use reverse mode.')
+	else:
+	    print('The number of variables = The number of functions. Use forward mode.')
+	
+	if forward_mode:
+	    if (seed is not None) and (not isinstance(seed, dict)):
+		raise AttributeError('Forward mode needs a dictionary as a seed.')
+	    output = Forward(val, func, seed)
+	    else: 
+		if (seed is not None) and (not isinstance(seed, list)):
+		    raise AttributeError('Reverse mode needs a list as a seed with a seed for each function input.')
+		output = Reverse(val, func, seed)
+
+	self.output = output
+	self.val = val
+	self.der = der
+
+   def __repr__(self):
+	return self.output.__repr__()
+
+   def __str__(self):
+	return self.output.__str__()   
+
+ 
 class DualNum:
+
+    '''
+	Creates a Dual Class that supports Auto Differentiation custom operations
+
+	Inputs
+	======
+	self: DualNum object
+	val: int or float; value of the user defined function(s) f evaluated at x = val
+	der: int or float; value of the initialized derivative/gradient/Jacobian of user defined function(s) f
+	seed: int, list, or array; the seed vector/derivative from parents	
+
+
+
     def __init__(self, val, der, seed = np.array([1])):
         self.val = val
         self.der = der
+        
 
     # Overload addition
     def __add__(self, other): 
