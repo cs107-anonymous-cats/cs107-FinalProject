@@ -41,7 +41,6 @@ class Node:
 
   #Overload rsub
   def __rsub__(self,other):
-    print('tried1')
     aux=Node(-self.val,parent1=self.parent1, parent2=self.parent2, der=self.der)
     return aux.__add__(other)
   
@@ -122,6 +121,7 @@ class Node:
       par1=node.parent1
       par2=node.parent2
       der=node.der
+      # print('-in is running')
       if par2!=None:
         try:
           grad[par1]+=sofar*der["1"]

@@ -315,5 +315,8 @@ y=(DualNum.cos(2)**DualNum(1,1))
 print(y.val,y.der)
 """
 
+# new 
+
+
 
 
