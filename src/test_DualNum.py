@@ -1,4 +1,4 @@
-from src.DualNum import *
+from DualNum import *
 import pytest
 
 
