@@ -121,8 +121,18 @@ Some simple user cases for some methods:
 
 ![](test_case.png)
 
-5. Future Features: 
-We will implement forward mode for vector functions as well as reverse mode in the future.
+# Extension - Reverse Mode
+
+#### Background
+Our extension to the package is an implementation of reverse mode automatic differentiation. The primary difference between reverse mode and forward mode
+is that reverse mode takes just 2 passes to compute the derivative for any function with any dimensions of input and output. Forward mode requires more 
+and more passes to compute the full derivative of a function as dimensions are added, and this is because reverse mode will create the computational graph
+in one pass and then work backwards in another pass to compute the whole derivative. Forward mode does not store the computational graph, and so it needs
+to do the entire chain rule to compute a derivative for each possible "direction" given by a seed vector. Because of those, reverse mode is a much more
+efficient method of automatic differentiation for functions with many dimensions of input, which is how neural networks operate. The tradeoff for this is
+that reverse mode takes up much more memory as storing the whole computational graph is needed.
+
+#### Implementation
 
 # Licensing
 
