@@ -515,6 +515,7 @@ class Node:
       par1=node.parent1
       par2=node.parent2
       der=node.der
+      # print('-in is running')
       if par2!=None:
         try:
           grad[par1]+=sofar*der["1"]
