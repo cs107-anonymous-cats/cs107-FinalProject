@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[11]:
-
-
 import numpy as np
 import re
 
@@ -40,8 +34,8 @@ class AutoDiff:
             output = Reverse(val, func, seed)
             
         self.output = output
-        self.val = val
-        self.der = der
+        self.val = output.val
+        self.der = output.der
     
     def __repr__(self):
         return self.output.__repr__()
@@ -377,7 +371,34 @@ class DualNum:
     # Overload sqrt
     @staticmethod
     def sqrt(other):
-        if other < 0:
+        if isinstance(other, DualNum):
+            new_other = np.sqrt(other.val)
+            new_der = 0.5 / np.sqrt(other.val) * other.der
+            return DualNum(new_other, new_der)
+        elif other < 0:
             raise ValueError('Cannot take square roots of negative values')
-        return other ** (1/2)
+        else:
+            return np.sqrt(other)
+    
+    
+# simple tests
+print('Example with AutoDiff')
+val = {'x': 0, 'y': 0.25}
+func = ['cos(x) + y ** 2', '2 * sin(x) - sqrt(y)/3', '3 * sinh(y) - 4 * arcsin(y) + 5', 'cosh(x) / sinh(y)']
+
+output = AutoDiff(val, func)
+print(output)
+
+print('Example with Forward')
+val = {'x': 1, 'y': 2}
+func = ['cos(x) + y ** 2', 'tan(x)/3 - sqrt(y)']
+output = Forward(val, func)
+print(output)
+
+print('Example with Seed')
+val = {'x': 10, 'y': 3}
+seed = {'x': 1, 'y': 2}
+func = ['cos(x) + y ** 2', 'tan(x)/3 - sqrt(y)']
+output = AutoDiff(val, func, seed)
+print(output)
 
