@@ -60,12 +60,12 @@ Since we don't have too many modules to work with and we aren't building any sor
 
 # Implementation 
 
-1. Core data structure: 
+#### Core data structure: 
 
 We primarily used arrays when implementing the automatic differentiation for vector functions. We designed our own data structure in DualNum. This class object takes two input attributes: val and der. We developed several methods in the class, which will be outlined in the following sections. This class object can be used to calculate the value and derivative of a function. 
 
 
-2. Classes to implement: 
+#### Classes to implement: 
 
 We implemented 1 class: DualNumber. We overloaded all the basic operations, and created elemental functions as static methods. 
 
@@ -73,7 +73,7 @@ A snippet of the class structure is as follows:
 
 ![](dualnum_example.png)
 
-3. Methods and name attributes: 
+#### Methods and name attributes: 
 
 **Attributes:**
 
@@ -107,11 +107,11 @@ All the following methods are overwritten for members of the DualNum class: addi
 An example of the `__sin__` function is as follows:
 ![](sin.png)
  
-4. External dependencies: 
+#### External dependencies: 
 
 We used **numpy** as the sole dependency package, because it is fast and offers powerful tools for mathematical operations. At this stage we do not require other dependencies such as simpy or scipy. 
 
-5. Deal with elementary functions: 
+#### Deal with elementary functions: 
 
 We have desgined a **test_DualNum.py** file that achieved 96% of the code coverage. See below for the result. 
 
