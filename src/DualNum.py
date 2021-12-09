@@ -247,21 +247,21 @@ class DualNum:
 
     # Overload exp
     @staticmethod
-    def exp(other):
+    def exp(other, base=np.e):
         try:
-            return DualNum(np.exp(other.val), np.exp(other.val)*other.der)
+            return DualNum(base**other.val, base**other.val*other.der)
         except:
             other=DualNum(other,0)
-            return DualNum(np.exp(other.val), np.exp(other.val)*other.der)
+            return DualNum(base**other.val, base**other.val*other.der)
 
     # Overload ln
     @staticmethod
-    def ln(other):
+    def log(other, base=np.e):
         try:
-            return DualNum(np.log(other.val), 1/other.val*other.der)
+            return DualNum(np.log(other.val)/np.log(base), 1/other.val*other.der/np.log(base))
         except:
             other=DualNum(other,0)
-            return DualNum(np.log(other.val), 1/other.val*other.der)
+            return DualNum(np.log(other.val)/np.log(base), 1/other.val*other.der/np.log(base))
 
     # Overload tan
     @staticmethod

@@ -252,7 +252,7 @@ class Node:
       return other.__truediv__(self)
   
   @staticmethod
-  def exp(other):
+  def exp(other, base=np.e):
     """
     exponential of other
 
@@ -260,15 +260,17 @@ class Node:
     ----------------------------------
     other: Node
       argument of exponential function
+    base: float
+      base of exponential function
 
     Returns
     ---------------------------------
       Node object with updated value and derivative, parents of this new node is other
     """
     try:
-      return Node(np.exp(other.val), parent1=other, parent2=None, der={"1": np.exp(other.val) })
+      return Node(base**other.val, parent1=other, parent2=None, der={"1": base**other.val })
     except:
-      return np.exp(other)
+      return base**other
   
   @staticmethod
   def sin(other):
@@ -309,7 +311,7 @@ class Node:
       return np.cos(other)
 
   @staticmethod
-  def ln(other):
+  def log(other, base=np.e):
     """
     logarithm of other
 
@@ -317,15 +319,17 @@ class Node:
     ----------------------------------
     other: Node
       argument of logarithm function
+    base: float
+      base of logarithm function
 
     Returns
     ---------------------------------
       Node object with updated value and derivative, parents of this new node is other
     """
     try: 
-      return Node(np.log(other.val), parent1=other, der={"1": 1/other.val})
+      return Node(np.log(other.val)/np.log(base), parent1=other, der={"1": 1/other.val/np.log(base)})
     except:
-      return np.log(other)
+      return np.log(other)/np.log(base)
 
   @staticmethod
   def arcsin(other):
