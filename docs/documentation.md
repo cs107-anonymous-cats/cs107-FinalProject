@@ -62,12 +62,18 @@ Since we don't have too many modules to work with and we aren't building any sor
 
 #### Core data structure: 
 
-We primarily used arrays when implementing the automatic differentiation for vector functions. We designed our own data structure in DualNum. This class object takes two input attributes: val and der. We developed several methods in the class, which will be outlined in the following sections. This class object can be used to calculate the value and derivative of a function. 
-
+We primarily used arrays when implementing the automatic differentiation for vector functions. We designed our own data structure in the package. It is composed of 4 classes: AutoDiff, DualNum, Nodd and NodeVec. We will describe the classes and their attributes in the following sections. Methods of each class will also be described. These 4 classes allow us to conduct both forward and reverse mode at the user's choice. 
 
 #### Classes to implement: 
 
-We implemented 1 class: DualNumber. We overloaded all the basic operations, and created elemental functions as static methods. 
+1. DualNum: to calculate the value and derivative of a fuction. 
+
+2. AutoDiff: to initiates a function variable. 
+
+3. Forward: to create a forward AutoDiff class.
+
+
+We overloaded all the basic operations, and created elemental functions as static methods. 
 
 A snippet of the class structure is as follows:
 
