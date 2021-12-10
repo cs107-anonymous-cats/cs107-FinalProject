@@ -2,7 +2,7 @@ import pytest
 from ReverseMode import *
 
 # tested mult,exp,add,neg,y.der,rsub,
-# tested cos,sin,pow, div, reverse, sub,ln,rtruediv
+# tested cos,sin,pow, div, reverse, sub,log,rtruediv
 # tested cosh,sinh,tanh,arccos,arcsin,arctan,sqrt,logistic
 # adding radd/rmul/rpow/pow didn't help
 
@@ -38,7 +38,7 @@ def test_logistic():
 def test_vector():
     x1=Node(1)
     x2=Node(1)
-    y1=4*x1*Node.cos(x2)*Node.exp(x1)-Node.sin(x1)*Node.ln(x2)
+    y1=4*x1*Node.cos(x2)*Node.exp(x1)-Node.sin(x1)*Node.log(x2)
     y2=5*x1**2/x2+2+3**x1/1
     f=NodeVec([y1,y2])
     f.reverse()
@@ -63,7 +63,7 @@ def test_variable_invalid():
     with pytest.raises(Exception):
         x1=Node(1)
         x2=1
-        y1=4*x1*Node.cos(x2)*Node.exp(x1)-Node.sin(x1)*Node.ln(x2)
+        y1=4*x1*Node.cos(x2)*Node.exp(x1)-Node.sin(x1)*Node.log(x2)
         y2=5*x1**2/x2+2+3**x1/1
         f=NodeVec([y1,y2])
         f.reverse()
@@ -73,7 +73,7 @@ def test_index_out():
     with pytest.raises(Exception):
         x1=Node(1)
         x2=1
-        y1=4*x1*Node.cos(x2)*Node.exp(x1)-Node.sin(x1)*Node.ln(x2)
+        y1=4*x1*Node.cos(x2)*Node.exp(x1)-Node.sin(x1)*Node.log(x2)
         y2=5*x1**2/x2+2+3**x1/1
         f=NodeVec([y1,y2])
         f.reverse()
