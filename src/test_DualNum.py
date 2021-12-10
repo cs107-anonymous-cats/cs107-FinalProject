@@ -5,7 +5,6 @@ import pytest
 # tested: mul, add, radd, sub, div, rdiv, pow, rpow, exp, 
 # tested: eq, ne, arcos, arctan, tanh, sqrt, 
 
-# forward mode
 def test_autodiff():
     val = {'x': 0, 'y': 0.25}
     func = ['cos(x) + y ** 2', '2 * sin(x) - sqrt(y)/3', '3 * sinh(y) - 4 * arcsin(y) + 5', 'cosh(x) / sinh(y)','tan(x)/3 - sqrt(y)']
@@ -18,7 +17,6 @@ def test_autodiff2():
     output = AutoDiff(val, func)
     repr(output)
 
-#not adding new
 def test_with_seed(): 
     val = {'x': 10, 'y': 3}
     seed = {'x': 1, 'y': 2}
@@ -48,11 +46,11 @@ def test_tan():
     with pytest.raises(ValueError):
         DualNum.tan(DualNum(np.pi/2 + (np.pi),1))
 
-def test_pow(): #didn't work
+def test_pow(): 
     with pytest.raises(TypeError):
         DualNum(-1,1)**DualNum(1,1)
 
-def test_init(): #didn't work
+def test_init(): 
     with pytest.raises(TypeError):
         DualNum([1],1)
 
@@ -85,10 +83,10 @@ def test_exp():
     y=2*DualNum.exp(0)+3
     assert y.val == 5.0 
 
-def test_ln():
-    y=2*DualNum.ln(DualNum(1,1))+3
+def test_log():
+    y=2*DualNum.log(DualNum(1,1))+3
     assert y.val == 3.0
-    y=2*DualNum.ln(1)+3
+    y=2*DualNum.log(1)+3
     assert y.val == 3.0
 
 def test_pow2():

@@ -351,7 +351,7 @@ class DualNum:
             
             cosh = DualNum(new_other, new_der)
             return cosh
-        except AtrributeError:
+        except AttributeError:
             return np.cosh(other)
 
     # Overload tanh
