@@ -14,6 +14,6 @@ else
     driver="python ${@} ${unit}"
 fi
 
-export PYTHONPATH="$(pwd - P)/../src":${PYTHONPATH}
+export PYTHONPATH="$(pwd - P)/../src/autodiff":${PYTHONPATH}
 
 ${driver} ${tests[@]}

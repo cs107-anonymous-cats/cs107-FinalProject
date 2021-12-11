@@ -52,7 +52,7 @@ Then in the tests directory, we can run:
 
 for tests passed, and:
 
-`bash run_tests.sh pytest --cov=.`
+`bash run_tests.sh pytest --cov=../src`
 
 for coverage.
 
