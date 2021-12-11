@@ -41,7 +41,9 @@ For a scalar function, one should use the class DualNum:
 
 For a vector function, one should use the classes DualNum as well as DualNumVec:
 
-EXAMPLE TO BE INCLUDED HERE (one with seed vectors individually called and one with for loop to compute whole gradient directly)
+![](DualNumVec-How-To-Use.png)
+
+The above example highlights how to use DualNumVec by manually setting the seed vector whose elements are individually passed as the seed argument of DualNumVec, where the DualNumVec class inherits DualNum. The output returns a derivative in the form of a vector. If the user does not want to manually pass the seed vector, we wrote an optinal for loop structure that automates the process and will compute the whole gradient directly. The example outlined right below the first vector-valued function code.
 
 ##### Reverse mode:
 The Reverse mode of automatic differentiation is implemented in the Node and NodeVec classes.
