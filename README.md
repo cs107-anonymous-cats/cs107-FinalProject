@@ -13,7 +13,7 @@ This package implements the automatic differentiation. This is important for com
 
 ## Current Version
 
-**autodiff 0.1.1**
+**autodiff 0.1.2**
 
 ## Broader Impact and Inclusivity
 
