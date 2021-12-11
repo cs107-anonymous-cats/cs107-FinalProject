@@ -7,9 +7,15 @@
 * Zach Brown
 * Taro Spirig
 
-Current Version: autodiff 0.1.1
+## Description
 
-# Broader Impact and Inclusivity
+This package implements the automatic differentiation. This is important for complex computational problems, including optimization.
+
+## Current Version
+
+**autodiff 0.1.1**
+
+## Broader Impact and Inclusivity
 
 #### Broader Impact
 One of the primary uses for a package like **autodiff** is to help with deep/machine learning modeling, especially when gradient-based
