@@ -370,20 +370,20 @@ class DualNum:
     # Overload exp
     @staticmethod
     def exp(other, base=np.e):
-    """
-    exponential of other
+        """
+        exponential of other
 
-    Attributes
-    ----------------------------------
-    other: DualNum
-      argument of exponential function
-    base: float
-      base of exponential function
+        Attributes
+        ----------------------------------
+        other: DualNum
+          argument of exponential function
+        base: float
+          base of exponential function
 
-    Returns
-    ---------------------------------
-      DualNum object with updated value and derivative
-    """
+        Returns
+        ---------------------------------
+          DualNum object with updated value and derivative
+        """
         try:
             return DualNum(base**other.val, base**other.val*other.der)
         except:

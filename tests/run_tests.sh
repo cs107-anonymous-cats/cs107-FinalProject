@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 tests=(
-    test_DualNum.py
+    test_AutoDiff.py
 )
 
 
