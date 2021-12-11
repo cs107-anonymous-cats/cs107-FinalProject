@@ -7,6 +7,7 @@ This package implements the automatic differentiation. This is important for com
 Automatic Differentiation is a set of techniques that executes a sequence of elementary arithmetic operations (addition, subtraction, multiplication, division, etc.) and elementary functions. AD applies the chain rule to these operations to compute derivatives of arbitrary order, which is when the order is a real rational, irrational, or complex number. AD is different from symbolic and numerical differentiation because it is more code efficient, can output a single expression, and does not have round-off errors in the discretization process/cancellation. AD is also popular because it can compute partial derivatives of functions with many inputs/independent variables, which is important for gradient-based optimization. The two forms of AD are the forward mode, where the chain rule is applied from inside to outside the given function/expression, while reverse mode goes from outside to inside.
 
 ![Chain Rule](chain_rule.png)
+
 Automatic Differentiation uses computational graphs, which are functional descriptions using nodes and edges to describe the given computation. Edges represent values like scalars, vectors, matrices, or tensors, while nodes represent functions whose inputs are the incoming edges and the outputs are the outcoming edges.Another feature of computational graphs are that they are directed, which allowsus to follow the order of the computation. For forward propagation computation, we compute the function from inside to outside. More specifically, both forward and reverse modes use the chain rule to calculate the gradients, and in forward mode, the gradients are computed in the same order as the function evaluation. 
 
 The following is an example of a computational graph:
@@ -39,19 +40,19 @@ First, create a virtual environment of your choice (ex: virtualenv). Now we can 
 
 If one wants to run the tests for **autodiff**, it is necessary to clone the repository using:
 
-'git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git'
+`git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git`
 
 Then dependencies can be installed using the following in the root directory:
 
-'pip3 install -r requirements.txt'
+`pip3 install -r requirements.txt`
 
 Then in the tests directory, we can run:
 
-'bash run_tests.sh pytest -v'
+`bash run_tests.sh pytest -v`
 
 for tests passed, and:
 
-'bash run_tests.sh pytest --cov=.'
+`bash run_tests.sh pytest --cov=.`
 
 for coverage.
 
