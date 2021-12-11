@@ -14,8 +14,16 @@ The following is an example of a computational graph:
 ![Computational Graph](https://github.com/cs107-anonymous-cats/cs107-FinalProject/tree/main/docs/comp_graph.png)
 Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
+#### Extension - Reverse Mode
+Our extension to the package is an implementation of reverse mode automatic differentiation. The primary difference between rev>
+is that reverse mode takes just 2 passes to compute the derivative for any function with any dimensions of input and output. Fo>
+and more passes to compute the full derivative of a function as dimensions are added, and this is because reverse mode will cre>
+in one pass and then work backwards in another pass to compute the whole derivative. Forward mode does not store the computatio>
+to do the entire chain rule to compute a derivative for each possible "direction" given by a seed vector. Because of those, rev>
+efficient method of automatic differentiation for functions with many dimensions of input, which is how neural networks operate>
+that reverse mode takes up much more memory as storing the whole computational graph is needed.
 
-# How to Use AutomaticDifferentiation
+# How to Use autodiff
 
 #### Installing the package
 
@@ -26,6 +34,26 @@ First, create a virtual environment of your choice (ex: virtualenv). Now we can 
 #### Dependencies 
 
 `python3 -m pip install numpy`
+
+##### A Note on Testing
+
+If one wants to run the tests for **autodiff**, it is necessary to clone the repository using:
+
+'git clone https://github.com/cs107-anonymous-cats/cs107-FinalProject.git'
+
+Then dependencies can be installed using the following in the root directory:
+
+'pip3 install -r requirements.txt'
+
+Then in the tests directory, we can run:
+
+'bash run_tests.sh pytest -v'
+
+for tests passed, and:
+
+'bash run_tests.sh pytest --cov=.'
+
+for coverage.
 
 #### Importing the package: 
 
@@ -72,7 +100,8 @@ The most major files and directories are shown here. *docs* contains all documen
 **autodiff** module contains the scalar and vector classes for both forward mode and reverse mode of automatic differentiation.
 
 #### Testing and Coverage
-Testing and coverage is done using pytest and a test suite that operates using a bash script. See more in "How to Use".
+Testing and coverage is done using pytest and a test suite that operates using a bash script.
+![]()
 
 #### Package Distribution
 Package has thus far been distributed with TestPyPI. The *pyproject.toml* and *setup.cfg* in the root directory are for building the package into the */dist* directory, which was then uploaded with **twine**.
@@ -216,19 +245,6 @@ We have desgined a **test_AutoDiff.py** file that achieved 94% of the code cover
 Some simple user cases for some methods: 
 
 ![](test_case.png)
-
-# Extension - Reverse Mode
-
-#### Background
-Our extension to the package is an implementation of reverse mode automatic differentiation. The primary difference between reverse mode and forward mode
-is that reverse mode takes just 2 passes to compute the derivative for any function with any dimensions of input and output. Forward mode requires more 
-and more passes to compute the full derivative of a function as dimensions are added, and this is because reverse mode will create the computational graph
-in one pass and then work backwards in another pass to compute the whole derivative. Forward mode does not store the computational graph, and so it needs
-to do the entire chain rule to compute a derivative for each possible "direction" given by a seed vector. Because of those, reverse mode is a much more
-efficient method of automatic differentiation for functions with many dimensions of input, which is how neural networks operate. The tradeoff for this is
-that reverse mode takes up much more memory as storing the whole computational graph is needed.
-
-#### Implementation
 
 # Broader Impact and Inclusivity
 
