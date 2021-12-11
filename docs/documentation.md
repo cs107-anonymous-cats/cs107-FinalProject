@@ -19,15 +19,15 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-python3 -m pip install AutoDiff
+`python3 -m pip install AutoDiff`
 
 #### Dependencies 
 
-python3 -m pip install requirements.txt
+`python3 -m pip install requirements.txt`
 
 #### Importing the package: 
 
-import AutoDiff as ad
+`import AutoDiff as ad`
 
 #### Examples:
 
