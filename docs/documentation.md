@@ -65,6 +65,9 @@ One can also easily get the whole Jacobian/gradient at once without going throug
 Will be laid out as follows: 
 ![](directory_structure.png)
 
+The most major files and directories are shown here. *docs* contains all documentation files, *src* contains source code for
+**autodiff**, and *tests* contain testing suite. *dist* contains the package build.
+
 #### Modules
 **autodiff** module contains the scalar and vector classes for both forward mode and reverse mode of automatic differentiation.
 
