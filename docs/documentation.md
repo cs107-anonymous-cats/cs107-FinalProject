@@ -270,7 +270,7 @@ procedure being that pull requests concerning adding text or code can be self-ap
 the other contributors. All pull requests are reviewed in either case and of course can be reverted if necessary, similar to how Wikipedia
 operates. This ensures that anyone can contribute if they have something to offer but negative contributions can be filtered out.
 
-#Future
+# Future
 In the future, we would like to add a visualization tool for the computational graph of automatic differentiation, i.e. overload the __str__ function. We would also like to add a driver script for the Newton method for root finding, which is very useful in physics for example. We would also like to add a driver for the reverse mode of automatic differentiation to compute back-propagation in neural networks. 
 
 # Licensing
