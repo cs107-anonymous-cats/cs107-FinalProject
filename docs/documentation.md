@@ -19,15 +19,15 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-`python3 -m pip install autodiff`
+First, create a virtual environment of your choice (ex: virtualenv). Now we can run:
+
+`python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps autodiff-AnonCats`
 
 #### Dependencies 
 
-`python3 -m pip install requirements.txt`
+`python3 -m pip install numpy`
 
 #### Importing the package: 
-
-`import autodiff as ad`
 
 `from autodiff import DualNum, DualNumVec, Node, NodeVec`
 
@@ -72,7 +72,7 @@ Will be laid out as follows:
 Testing and coverage is done using pytest and a test suite that operates using a bash script. See more in "How to Use".
 
 #### Package Distribution
-Package will be distributed with PyPI. We will create *pyproject.toml* and *setup.cfg* files and then use **build** to build and upload the project.
+Package has thus far been distributed with TestPyPI. The *pyproject.toml* and *setup.cfg* in the root directory are for building the package into the */dist* directory, which was then uploaded with **twine**.
 
 #### Package Framework
 Since we don't have too many modules to work with and we aren't building any sort of application, a packaging framework won't be used to avoid overcomplicating development.
