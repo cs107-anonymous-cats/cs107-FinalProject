@@ -28,14 +28,8 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 #### Importing the package: 
 
 `import AutoDiff as ad`
-=======
-from AutoDiff import DualNum, DualNumVec, Node, NodeVec
->>>>>>> cdac66e37d48bb52b38e58e0f31799a97ab0c985
-=======
-import AutoDiff as ad
-=======
-from AutoDiff import DualNum, DualNumVec, Node, NodeVec
->>>>>>> 1f47728108808f9dd2f4745b1ee9f97cf27dc3fa
+
+`from AutoDiff import DualNum, DualNumVec, Node, NodeVec`
 
 #### Examples:
 
