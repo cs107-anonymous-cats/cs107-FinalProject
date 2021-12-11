@@ -19,7 +19,11 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
+<<<<<<< HEAD
 `python3 -m pip install AutoDiff`
+=======
+python3 -m pip install AutoDiff
+>>>>>>> cdac66e37d48bb52b38e58e0f31799a97ab0c985
 
 #### Dependencies 
 
@@ -27,18 +31,37 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Importing the package: 
 
+<<<<<<< HEAD
 `import AutoDiff as ad`
+=======
+from AutoDiff import DualNum, DualNumVec, Node, NodeVec
+>>>>>>> cdac66e37d48bb52b38e58e0f31799a97ab0c985
 
 #### Examples:
 
-For a scalar function: 
+##### Forward mode:
+The forward mode of automatic differentiation is implemented in the DualNum and DualNumVec classes.
+For a scalar function, one should use the class DualNum: 
 
 ![](HowtoUse1_scalarV2.png)
 
-For a vector function:
-Note: For now vector functions are not suported. This functionality will be soon implemented and an example will be given here.
+For a vector function, one should use the classes DualNum as well as DualNumVec:
 
-![](HowtoUse2_vector.png)
+EXAMPLE TO BE INCLUDED HERE (one with seed vectors individually called and one with for loop to compute whole gradient directly)
+
+##### Reverse mode:
+The Reverse mode of automatic differentiation is implemented in the Node and NodeVec classes.
+For a scalar function, one should use the Node class: 
+
+![](HowToUse_Node1.png)
+
+For a vector function, one should use the classes Node as well as NodeVec:
+
+![](HowToUse_Node2.png)
+
+One can also easily get the whole Jacobian/gradient at once without going through each variables one-by-one, by defining the variables in a list. Using the same vector function as above we can write:
+
+![](HowToUse_Node3.png)
 
 # Software Organization
 
