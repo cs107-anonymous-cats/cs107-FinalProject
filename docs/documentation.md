@@ -83,29 +83,30 @@ We primarily used arrays when implementing the automatic differentiation for vec
 
 #### Classes to implement: 
 
-1. DualNum: Initiate a function variable for scalar inputs to calculate the value and derivative of a function in Forward Mode.  
+1. DualNum: Creates a Dual Class that supports Auto Differentiation custom operations. In order to generate a derivative of a function with respect to a specific variable, we initalize the variable and function(s) as DualNum objects. 
 
-2. DualNumVec: Initate a function variable for vector inputs to calculate the value and derivative of a function in Forward Mode.
+2. DualNumVec: this class is for vector valued functions. It takes in a list of DualNum objects, and allows the user to compute forward pass of forward mode for each entry in the vector function. 
 
-3. Node:
+3. Node: Basic building block to use reverse mode of automatic differentiation. In a function, all variables/numbers and the results of operations on them are represented as Nodes. Together they form a tree structure. 
 
-4. NodeVec:
-
+4. NodeVec: Uses Node class for vector-valued functions. It takes a list of Node objects, and allows the user to compute reverse pass of reverse mode of automatic differentiation for each entry in vector function. 
 
 We overloaded all the basic operations, and created elemental functions as static methods. 
 
 A snippet of the class structure is as follows:
 
-![](dualnum_example.png)
+![](example_NodeVec.png)
 
 #### Methods and name attributes: 
 
 **Attributes:**
 
+1. DualNum
+
 - `self.val`: stores the value of the DualNum object. In practice, this will be the value of a function 
 - `self.der`: stores the derivative of the DualNum object. 
 
-All the following methods are overwritten for members of the DualNum class: addition, multiplication, subtraction, division, power. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine (tangent is sine over cosine). All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
+All the following methods are overwritten for members of the DualNum class: addition, multiplication, subtraction, division, power, negation, equal to and not equal to. In addition the following elementary functions are overwritten as well as staticmethods: exponential, logarithm, sine, cosine, tangent, arccosine, arcsine, arctangent, tanh, sinh, cosh, square root. All of these methods also work with numbers which are upgraded to dual numbers when encountered as can be seen in the following example:
 ![](add_methodV2.png)
 
 **Basic operations:**
@@ -120,9 +121,13 @@ All the following methods are overwritten for members of the DualNum class: addi
 - `__rtruedive__`: for reverse division. 
 - `__neg__`: for negation.
 - `__pow__`: for the power calculation.i.e. DualNum(1,1)^3. 
-- `__rpow__`: for the reverse power calculation.i.e. 3^DualNum(1,1)
+- `__rpow__`: for the reverse power calculation.i.e. 3^DualNum(1,1).
+- `__eq__`: for checking if two objects are equal.
+- `__ne__`: opposite of `__eq__`, to check if two objects are unequal. 
 
 **Static methods:** 
+
+For trigonometry operations as well as exponentials and ln operations. 
 
 - `__sin__`
 - `__cos__`
@@ -136,20 +141,72 @@ All the following methods are overwritten for members of the DualNum class: addi
 - `__sqrt__`
 - `__exp__`
 - `__log__`
+- `__sqrt__`
+- `__logistic__`
 
 An example of the `__sin__` function is as follows:
 ![](sin.png)
- 
- 
+
+2. DualNumVec
+
+**Attributes:**
+
+- self.vec: vector functions
+- self.grad: a list to store gradients
+- self.vals: a list of DualNum objects
+
+**Methods:**
+
+- `getgrad`: takes entry in Jacobian of function, labeled by the entry of the function and the variable against which it is derived. Outputs the value of the entry of interest in the Jacobian. 
+
+- `getvals`: Computes forward pass of forward mode of automatic differentiation for each entry in vector function, then updates the attribute jacobian of the class
+
+3. Node:
+
+**Attributes:**
+
+- self.val: takes in an integer value of the variable/number
+- self.parent1, self.parent2: Node. Current node is the result of an operation on previous Node(s), called the parents. A node can have maximum of 2 parents. 
+- self.der: a dictionary storing deriatives of the node
+- self.grad: a dictionary storing the gradients
+
+**Basic operations:**
+
+Same basic operations as the DualNum class above.
+
+**Static methods:**
+
+Same static methods as the DualNum class above. 
+
+**Other methods:**
+
+- `reverse`: Computes the reverse pass, i.e. goes through the tree in reverse and computes the gradient of the function. 
+- `getgrad`: Outputs value of gradient of the function with respect to the variable input. 
+
+4. NodeVec:
+
+**Attributes:**
+
+- self.vals: a list of Node objects
+- self.jacobian: a dictionary storing the Jacobians of the function
+
+**Methods:**
+
+- `reverse`: Computes reverse pass of reverse mode of automatic differentiation for each entry in vector function. Updates the attribute jacobian of the class.
+- `getgrad`: Gets entry in Jacobian of function, labeled by the entry of the function and the variable against which it is derived.
+
+An example of the `__sin__` function is as follows:
+![](sin.png)
+
 #### External dependencies: 
 
 We used **numpy** as the sole dependency package, because it is fast and offers powerful tools for mathematical operations. At this stage we do not require other dependencies such as simpy or scipy. 
 
 #### Deal with elementary functions: 
 
-We have desgined a **test_DualNum.py** file that achieved 96% of the code coverage. See below for the result. 
+We have desgined a **test_AutoDiff.py** file that achieved 94% of the code coverage. See below for the result. 
 
-![](test_DualNum.png)
+![](test_AutoDiff.png)
 
 Some simple user cases for some methods: 
 
