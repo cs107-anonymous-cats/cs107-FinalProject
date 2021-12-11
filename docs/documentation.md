@@ -19,26 +19,43 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-python3 -m pip install AutDiff
+`python3 -m pip install AutoDiff`
 
 #### Dependencies 
 
-python3 -m pip install requirements.txt
+`python3 -m pip install requirements.txt`
 
 #### Importing the package: 
 
-import AutDiff as ad
+`import AutoDiff as ad`
+
+`from AutoDiff import DualNum, DualNumVec, Node, NodeVec`
 
 #### Examples:
 
-For a scalar function: 
+##### Forward mode:
+The forward mode of automatic differentiation is implemented in the DualNum and DualNumVec classes.
+For a scalar function, one should use the class DualNum: 
 
 ![](HowtoUse1_scalarV2.png)
 
-For a vector function:
-Note: For now vector functions are not suported. This functionality will be soon implemented and an example will be given here.
+For a vector function, one should use the classes DualNum as well as DualNumVec:
 
-![](HowtoUse2_vector.png)
+EXAMPLE TO BE INCLUDED HERE (one with seed vectors individually called and one with for loop to compute whole gradient directly)
+
+##### Reverse mode:
+The Reverse mode of automatic differentiation is implemented in the Node and NodeVec classes.
+For a scalar function, one should use the Node class: 
+
+![](HowToUse_Node1.png)
+
+For a vector function, one should use the classes Node as well as NodeVec:
+
+![](HowToUse_Node2.png)
+
+One can also easily get the whole Jacobian/gradient at once without going through each variables one-by-one, by defining the variables in a list. Using the same vector function as above we can write:
+
+![](HowToUse_Node3.png)
 
 # Software Organization
 
@@ -114,16 +131,17 @@ For trigonometry operations as well as exponentials and ln operations.
 
 - `__sin__`
 - `__cos__`
-- `__exp__`
-- `__log__`
-- `__sqrt__`
 - `__tan__`
+- `__sinh__`
+- `__cosh__`
+- `__tanh__`
 - `__arcsin__`
 - `__arccos__`
 - `__arctan__`
-- `__sinh__`
-- `__cosh__` 
-- `__tanh__`
+- `__sqrt__`
+- `__exp__`
+- `__log__`
+- `__sqrt__`
 - `__logistic__`
 
 An example of the `__sin__` function is as follows:
@@ -177,6 +195,8 @@ Same static methods as the DualNum class above.
 - `reverse`: Computes reverse pass of reverse mode of automatic differentiation for each entry in vector function. Updates the attribute jacobian of the class.
 - `getgrad`: Gets entry in Jacobian of function, labeled by the entry of the function and the variable against which it is derived.
 
+An example of the `__sin__` function is as follows:
+![](sin.png)
 
 #### External dependencies: 
 
