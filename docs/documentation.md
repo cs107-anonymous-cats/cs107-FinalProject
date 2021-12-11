@@ -19,11 +19,7 @@ Source: https://kailaix.github.io/ADCME.jl/latest/tu_whatis/
 
 #### Installing the package
 
-<<<<<<< HEAD
 `python3 -m pip install AutoDiff`
-=======
-python3 -m pip install AutoDiff
->>>>>>> cdac66e37d48bb52b38e58e0f31799a97ab0c985
 
 #### Dependencies 
 
@@ -31,11 +27,15 @@ python3 -m pip install AutoDiff
 
 #### Importing the package: 
 
-<<<<<<< HEAD
 `import AutoDiff as ad`
 =======
 from AutoDiff import DualNum, DualNumVec, Node, NodeVec
 >>>>>>> cdac66e37d48bb52b38e58e0f31799a97ab0c985
+=======
+import AutoDiff as ad
+=======
+from AutoDiff import DualNum, DualNumVec, Node, NodeVec
+>>>>>>> 1f47728108808f9dd2f4745b1ee9f97cf27dc3fa
 
 #### Examples:
 
@@ -128,7 +128,7 @@ All the following methods are overwritten for members of the DualNum class: addi
 - `__pow__`: for the power calculation.i.e. DualNum(1,1)^3. 
 - `__rpow__`: for the reverse power calculation.i.e. 3^DualNum(1,1)
 
-**Static methods:** for trigonometry operations as well as exponentials and ln operations. 
+**Static methods:** 
 
 - `__sin__`
 - `__cos__`
