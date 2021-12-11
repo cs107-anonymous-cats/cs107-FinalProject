@@ -27,6 +27,8 @@ python3 -m pip install requirements.txt
 
 #### Importing the package: 
 
+import AutoDiff as ad
+=======
 from AutoDiff import DualNum, DualNumVec, Node, NodeVec
 
 #### Examples:
@@ -85,6 +87,10 @@ We primarily used arrays when implementing the automatic differentiation for vec
 
 2. DualNumVec: Initate a function variable for vector inputs to calculate the value and derivative of a function in Forward Mode.
 
+3. Node:
+
+4. NodeVec:
+
 
 We overloaded all the basic operations, and created elemental functions as static methods. 
 
@@ -120,11 +126,20 @@ All the following methods are overwritten for members of the DualNum class: addi
 
 - `__sin__`
 - `__cos__`
+- `__tan__`
+- `__sinh__`
+- `__cosh__`
+- `__tanh__`
+- `__arcsin__`
+- `__arccos__`
+- `__arctan__`
+- `__sqrt__`
 - `__exp__`
-- `__ln__`
+- `__log__`
 
 An example of the `__sin__` function is as follows:
 ![](sin.png)
+ 
  
 #### External dependencies: 
 
